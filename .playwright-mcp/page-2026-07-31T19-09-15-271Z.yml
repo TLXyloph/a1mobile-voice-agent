@@ -1,0 +1,69 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]: GC
+      - paragraph [ref=e5]: 31 years in business
+      - heading "Golden Crumb Bakery" [level=1] [ref=e6]
+      - paragraph [ref=e7]: Family-owned sourdough and pastry since 1994
+      - generic [ref=e8]:
+        - link "Call (415) 555-0142" [ref=e9] [cursor=pointer]:
+          - /url: tel:+14155550142
+        - link "Email us" [ref=e10] [cursor=pointer]:
+          - /url: mailto:hello@goldencrumb.example
+      - list [ref=e11]:
+        - listitem [ref=e12]: Sourdough
+        - listitem [ref=e13]: Gluten-free options
+        - listitem [ref=e14]: Same-day catering
+  - generic [ref=e16]:
+    - generic [ref=e17]:
+      - paragraph [ref=e18]: What we make
+      - heading "Services" [level=2] [ref=e19]
+    - list [ref=e20]:
+      - listitem [ref=e21]:
+        - generic [ref=e22]:
+          - heading "Catering platters" [level=3] [ref=e23]
+          - generic [ref=e25]: from $85
+        - paragraph [ref=e26]: Assorted pastries for offices and events, delivered
+      - listitem [ref=e27]:
+        - generic [ref=e28]:
+          - heading "Custom cakes" [level=3] [ref=e29]
+          - generic [ref=e31]: from $60
+        - paragraph [ref=e32]: Birthdays, weddings, and celebrations. Two weeks notice
+      - listitem [ref=e33]:
+        - generic [ref=e34]:
+          - heading "Daily breads" [level=3] [ref=e35]
+          - generic [ref=e37]: $7-$12
+        - paragraph [ref=e38]: Sourdough, rye, and focaccia baked each morning
+  - generic [ref=e40]:
+    - generic [ref=e41]:
+      - paragraph [ref=e42]: When
+      - heading "Hours" [level=2] [ref=e43]
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - term [ref=e47]: Mon-Fri
+          - definition [ref=e48]: 6am - 4pm
+        - generic [ref=e49]:
+          - term [ref=e50]: Sat
+          - definition [ref=e51]: 7am - 3pm
+        - generic [ref=e52]:
+          - term [ref=e53]: Sun
+          - definition [ref=e54]: Closed
+    - generic [ref=e55]:
+      - paragraph [ref=e56]: Say hello
+      - heading "Get in touch" [level=2] [ref=e57]
+      - list [ref=e58]:
+        - listitem [ref=e59]:
+          - generic [ref=e60]: Phone
+          - link "(415) 555-0142" [ref=e61] [cursor=pointer]:
+            - /url: tel:+14155550142
+        - listitem [ref=e62]:
+          - generic [ref=e63]: Email
+          - link "hello@goldencrumb.example" [ref=e64] [cursor=pointer]:
+            - /url: mailto:hello@goldencrumb.example
+        - listitem [ref=e65]:
+          - generic [ref=e66]: Find us
+          - generic [ref=e67]: 1842 Irving StSan FranciscoCA
+  - contentinfo [ref=e68]:
+    - generic [ref=e69]:
+      - generic [ref=e70]: GC
+      - paragraph [ref=e71]: © 2026 Golden Crumb Bakery

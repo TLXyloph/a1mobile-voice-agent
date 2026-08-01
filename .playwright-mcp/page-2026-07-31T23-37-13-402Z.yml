@@ -1,0 +1,156 @@
+- generic [ref=f18e2]:
+  - banner [ref=f18e3]:
+    - paragraph [ref=f18e4]: Errand · booking · closes on booked_meeting
+    - heading "Book a dentist cleaning for Dad — next three weeks" [level=1] [ref=f18e5]
+    - paragraph [ref=f18e6]: One 30-minute hygienist appointment from Mission Dental, San Francisco · (415) 555-0184
+  - region [ref=f18e7]:
+    - heading "Booked versus proven" [level=2] [ref=f18e8]
+    - generic [ref=f18e9]:
+      - generic [ref=f18e10]:
+        - paragraph [ref=f18e11]: Booked
+        - paragraph [ref=f18e12]: "3"
+        - paragraph [ref=f18e13]: appointments the agent says it secured
+      - generic [ref=f18e14]:
+        - paragraph [ref=f18e15]: Proven
+        - paragraph [ref=f18e16]: "1"
+        - paragraph [ref=f18e17]: appointments confirmed by an independent channel
+    - generic [ref=f18e18]:
+      - generic [ref=f18e19]: "2"
+      - generic [ref=f18e20]: GAP — 2 OF 3 CLAIMED APPOINTMENTS HAVE NO INDEPENDENT PROOF
+      - generic [ref=f18e21]: 1 of them is directly contradicted by an independent channel.
+    - generic [ref=f18e22]:
+      - generic [ref=f18e23]:
+        - generic [ref=f18e24]: "1"
+        - text: VERIFIED
+      - generic [ref=f18e25]:
+        - generic [ref=f18e26]: "1"
+        - text: UNVERIFIED
+      - generic [ref=f18e27]:
+        - generic [ref=f18e28]: "1"
+        - text: CONTRADICTED
+  - region [ref=f18e29]:
+    - heading "Operator brief" [level=2] [ref=f18e30]
+    - generic [ref=f18e31]:
+      - generic [ref=f18e32]:
+        - term [ref=f18e33]: Callee
+        - definition [ref=f18e34]:
+          - text: Mission Dental, San Francisco ·
+          - code [ref=f18e35]: +1 415 555 0184
+      - generic [ref=f18e36]:
+        - term [ref=f18e37]: On whose behalf
+        - definition [ref=f18e38]: Ravi Bandi · DOB 1958-03-04
+      - generic [ref=f18e39]:
+        - term [ref=f18e40]: Definition of done
+        - definition [ref=f18e41]: The practice texts a confirmed date and time
+      - generic [ref=f18e42]:
+        - term [ref=f18e43]: Confirm to
+        - definition [ref=f18e44]:
+          - code [ref=f18e45]: +1 415 555 0146
+          - text: (SMS)
+      - generic [ref=f18e46]:
+        - term [ref=f18e47]: Deadline
+        - definition [ref=f18e48]: 2026-08-21
+      - generic [ref=f18e49]:
+        - term [ref=f18e50]: Urgency
+        - definition [ref=f18e51]: This month
+      - generic [ref=f18e52]:
+        - term [ref=f18e53]: Preferred windows
+        - definition [ref=f18e54]: Tue/Thu after 14:00 · Wed before 11:00 · Fri after 15:00
+      - generic [ref=f18e55]:
+        - term [ref=f18e56]: Insurance / membership
+        - definition [ref=f18e57]: Delta Dental PPO · member 8841-22-093
+      - generic [ref=f18e58]:
+        - term [ref=f18e59]: Never do
+        - definition [ref=f18e60]: Never accept a date past 2026-08-21. Never agree to X-rays or any add-on procedure. Never share card or bank details.
+  - region [ref=f18e61]:
+    - heading "Claims filed by the agent" [level=2] [ref=f18e62]
+    - generic [ref=f18e63]:
+      - article [ref=f18e64]:
+        - generic [ref=f18e65]:
+          - generic [ref=f18e66]:
+            - heading "Hygiene cleaning booked — Tue 11 Aug 2026, 14:40, 30 minutes, with Marisol R." [level=3] [ref=f18e67]
+            - paragraph [ref=f18e68]: "Expected side effect: Mission Dental sends an unsolicited text to +1 415 555 0146 naming a date and time for Ravi Bandi."
+            - paragraph [ref=f18e69]: clm_7f3a1c · filed 2026-07-31 10:47 PT
+          - generic [ref=f18e70]: VERIFIED
+        - generic [ref=f18e74]:
+          - paragraph [ref=f18e75]: Evidence — 3 artifacts, 2 from an independent channel
+          - generic [ref=f18e76]:
+            - generic [ref=f18e77]:
+              - generic [ref=f18e78]: agent_assertion
+              - generic [ref=f18e79]: Not independent
+              - generic [ref=f18e80]: Asserts only
+              - generic [ref=f18e81]: 2026-07-31 10:47 PT
+            - paragraph [ref=f18e82]: Agent stated on call that the front desk read back the slot.
+            - paragraph [ref=f18e83]: Front desk offered Tuesday the 11th at 2:40pm with Marisol and I accepted it for Ravi.
+          - generic [ref=f18e84]:
+            - generic [ref=f18e85]:
+              - generic [ref=f18e86]: inbound_sms
+              - generic [ref=f18e87]: Independent
+              - generic [ref=f18e88]: Supports
+              - generic [ref=f18e89]: 2026-07-31 10:53 PT
+            - paragraph [ref=f18e90]: Text received from +1 415 555 0184 at the confirm_to number. Not solicited by the agent's own device.
+            - paragraph [ref=f18e91]: "Mission Dental: CONFIRMED — Ravi Bandi, hygiene visit Tue 8/11 2:40 PM w/ Marisol. Arrive 10 min early. Reply R to reschedule."
+          - generic [ref=f18e92]:
+            - generic [ref=f18e93]:
+              - generic [ref=f18e94]: independent_transcript
+              - generic [ref=f18e95]: Independent
+              - generic [ref=f18e96]: Supports
+              - generic [ref=f18e97]: 2026-07-31 11:02 PT
+            - paragraph [ref=f18e98]: Local Whisper pass over the call recording, run separately from the agent's own turn log.
+            - paragraph [ref=f18e99]: …okay, Tuesday the eleventh, two forty, with Marisol. I've got Ravi Bandi down, B-A-N-D-I.
+      - article [ref=f18e100]:
+        - generic [ref=f18e101]:
+          - generic [ref=f18e102]:
+            - heading "Delta Dental PPO on file — no pre-authorisation needed for a routine cleaning." [level=3] [ref=f18e103]
+            - paragraph [ref=f18e104]: "Expected side effect: Coverage is reflected on the practice's written confirmation, or the plan's eligibility endpoint returns active for member 8841-22-093."
+            - paragraph [ref=f18e105]: clm_2b90de · filed 2026-07-31 10:49 PT
+          - generic [ref=f18e106]: UNVERIFIED
+        - generic [ref=f18e109]:
+          - paragraph [ref=f18e110]: Evidence — 1 artifact, 0 from an independent channel
+          - generic [ref=f18e111]:
+            - generic [ref=f18e112]:
+              - generic [ref=f18e113]: agent_assertion
+              - generic [ref=f18e114]: Not independent
+              - generic [ref=f18e115]: Asserts only
+              - generic [ref=f18e116]: 2026-07-31 10:49 PT
+            - paragraph [ref=f18e117]: Agent reported the receptionist's verbal answer. Nothing outside the agent has spoken to this.
+            - paragraph [ref=f18e118]: She said they take Delta PPO and there's no pre-auth for a cleaning, they'll check the member number on arrival.
+      - article [ref=f18e119]:
+        - generic [ref=f18e120]:
+          - generic [ref=f18e121]:
+            - heading "Backup slot held — Sat 15 Aug 2026, 09:20, in case the Tuesday visit is cancelled." [level=3] [ref=f18e122]
+            - paragraph [ref=f18e123]: "Expected side effect: Two appointments for Ravi Bandi appear on the practice's confirmation to +1 415 555 0146."
+            - paragraph [ref=f18e124]: clm_c41e08 · filed 2026-07-31 10:50 PT
+          - generic [ref=f18e125]: CONTRADICTED
+        - generic [ref=f18e129]:
+          - paragraph [ref=f18e130]: Evidence — 3 artifacts, 2 from an independent channel
+          - generic [ref=f18e131]:
+            - generic [ref=f18e132]:
+              - generic [ref=f18e133]: agent_assertion
+              - generic [ref=f18e134]: Not independent
+              - generic [ref=f18e135]: Asserts only
+              - generic [ref=f18e136]: 2026-07-31 10:50 PT
+            - paragraph [ref=f18e137]: Agent reported holding a second slot at the end of the call.
+            - paragraph [ref=f18e138]: I also asked them to pencil in Saturday the 15th at 9:20 as a backup and she said that's fine.
+          - generic [ref=f18e139]:
+            - generic [ref=f18e140]:
+              - generic [ref=f18e141]: inbound_sms
+              - generic [ref=f18e142]: Independent
+              - generic [ref=f18e143]: Contradicts
+              - generic [ref=f18e144]: 2026-07-31 10:53 PT
+            - paragraph [ref=f18e145]: The practice's own confirmation names one appointment only.
+            - paragraph [ref=f18e146]: "Mission Dental: You have 1 upcoming appointment on file (Tue 8/11 2:40 PM). We do not hold provisional slots."
+          - generic [ref=f18e147]:
+            - generic [ref=f18e148]:
+              - generic [ref=f18e149]: web_check
+              - generic [ref=f18e150]: Independent
+              - generic [ref=f18e151]: Contradicts
+              - generic [ref=f18e152]: 2026-07-31 10:58 PT
+            - paragraph [ref=f18e153]: Fetched the practice's public hours page and read the opening times.
+            - paragraph [ref=f18e154]: Hours — Mon–Thu 8:00–17:00, Fri 8:00–14:00. Closed Saturday & Sunday.
+  - contentinfo [ref=f18e155]:
+    - paragraph [ref=f18e156]:
+      - text: How a claim gets promoted. Every claim is born UNVERIFIED. The agent's own words are recorded on the
+      - code [ref=f18e157]: agent_assertion
+      - text: channel and are never counted as proof — no volume of agent insistence can promote a claim. Only an independent channel (inbound SMS, inbound email, a provider API, a web check, DTMF, an independent transcript, a human callback) can move a claim to VERIFIED, or knock it to CONTRADICTED.
+    - paragraph [ref=f18e158]: Verdicts on this page are derived from the evidence below them at render time, not read from a stored field.

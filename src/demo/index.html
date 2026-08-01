@@ -1,0 +1,212 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rosewater Bakehouse — live agent demo</title>
+<style>
+  :root{
+    --ink:#17150f; --mid:#5d5749; --faint:#8d8877; --line:#ddd6c6;
+    --bg:#f6f3ea; --card:#fffdf7; --green:#1d6b45; --oxide:#9c3b21; --amber:#8a6a12;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+  .wrap{max-width:940px;margin:0 auto;padding:40px 24px 80px}
+  h1{font-family:Iowan Old Style,Palatino,Georgia,serif;font-size:44px;line-height:1.05;
+     margin:0 0 6px;letter-spacing:-.02em}
+  .sub{color:var(--mid);font-size:17px;margin:0 0 34px;max-width:62ch}
+  h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);
+     margin:38px 0 14px;font-weight:700}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:2px;padding:22px 24px}
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .kv{border-left:2px solid var(--line);padding-left:12px}
+  .kv .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid)}
+  .kv .v{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:21px;
+         font-variant-numeric:tabular-nums;margin-top:2px}
+  .kv .n{font-size:12.5px;color:var(--mid);margin-top:3px;line-height:1.35}
+  .rule{height:1px;background:var(--line);margin:34px 0}
+  ul.rules{margin:0;padding-left:18px} ul.rules li{margin:7px 0;color:var(--mid)}
+  ul.rules b{color:var(--ink);font-weight:600}
+  form{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+  input{flex:1 1 240px;padding:13px 14px;border:1px solid var(--line);border-radius:2px;
+        font-size:17px;background:#fff;font-family:ui-monospace,Menlo,monospace}
+  input:focus{outline:2px solid var(--green);outline-offset:1px}
+  button{padding:13px 22px;border:0;border-radius:2px;background:var(--ink);color:#fff;
+         font-size:15px;font-weight:600;cursor:pointer}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  .msg{margin-top:12px;font-size:14.5px;min-height:20px}
+  .ok{color:var(--green)} .err{color:var(--oxide)}
+  .step{display:none} .step.on{display:block}
+  .chip{display:inline-block;font-size:10.5px;letter-spacing:.1em;padding:3px 8px;
+        border:1px solid;border-radius:2px;font-weight:700}
+  .VERIFIED{color:var(--green);border-color:var(--green)}
+  .UNVERIFIED{color:var(--amber);border-color:var(--amber)}
+  .CONTRADICTED{color:var(--oxide);border-color:var(--oxide);background:#fbeee9}
+  .rc{border-top:1px solid var(--line);padding:14px 0}
+  .rc .d{font-weight:600;margin:6px 0 4px}
+  .ev{font-size:13px;color:var(--mid);margin-left:2px}
+  .ev .ind{color:var(--green);font-weight:600}
+  .stack{font-size:14px;color:var(--mid);line-height:1.75}
+  .stack b{color:var(--ink)}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:13px;background:#efeade;
+       padding:1px 5px;border-radius:2px}
+</style>
+
+<div class="wrap">
+  <h1>Rosewater Bakehouse</h1>
+  <p class="sub">An outbound voice agent that negotiates a real catering order — and
+  cannot report a sale it did not make. Everything below is read live from the
+  configuration the agent actually runs under, not typed into this page.</p>
+
+  <h2>Who the agent thinks it is</h2>
+  <div class="card">
+    <div class="grid" id="persona"></div>
+  </div>
+
+  <h2>What it may and may not do</h2>
+  <div class="card">
+    <div class="grid" id="limits"></div>
+    <div class="rule"></div>
+    <ul class="rules">
+      <li><b>It cannot quote below the floor.</b> Not under pressure, not after
+          repeated asking — the number is refused before it can be spoken.</li>
+      <li><b>It cannot undercut you.</b> Say what you pay now and it will never
+          offer less than that.</li>
+      <li><b>It cannot promise capacity it does not have.</b></li>
+      <li><b>There is nobody to escalate to.</b> No "let me ask my manager" —
+          the limits are absolute.</li>
+      <li><b>It cannot mark its own work done.</b> Every claim is born
+          UNVERIFIED and only independent evidence promotes it.</li>
+    </ul>
+  </div>
+
+  <h2>Call me</h2>
+  <div class="card">
+    <p style="margin:0 0 4px;color:var(--mid);font-size:14.5px">
+      a1mobile's sandbox only dials numbers that have passed an OTP check —
+      a deliberate guardrail against agents cold-dialing strangers. So we verify
+      first. Takes about a minute.</p>
+
+    <div class="step on" id="s1">
+      <form onsubmit="sendCode(event)">
+        <input id="phone" placeholder="(415) 555-0142" autocomplete="tel">
+        <button id="b1">Send me a code</button>
+      </form>
+    </div>
+    <div class="step" id="s2">
+      <form onsubmit="confirmCode(event)">
+        <input id="code" placeholder="5-digit code" inputmode="numeric">
+        <button id="b2">Verify</button>
+      </form>
+    </div>
+    <div class="step" id="s3">
+      <form onsubmit="placeCall(event)">
+        <button id="b3">Call me now</button>
+      </form>
+    </div>
+    <div class="msg" id="msg"></div>
+    <p style="margin:14px 0 0;color:var(--mid);font-size:13.5px">
+      Try: <code>200 croissants Thursday, I pay $400 now</code> ·
+      <code>I'll only pay $100</code> ·
+      <code>Can you do 800?</code>
+    </p>
+  </div>
+
+  <h2>Receipts</h2>
+  <div class="card" id="receipts"><span style="color:var(--mid)">Loading…</span></div>
+
+  <h2>Stack</h2>
+  <div class="card stack">
+    <b>Telephony</b> — a1mobile number over their SIP trunk (Telnyx), outbound via LiveKit SIP.<br>
+    <b>Voice</b> — Deepgram nova-3 → OpenAI gpt-5.4 → Cartesia sonic-2, Silero VAD on-device.<br>
+    <b>Control</b> — a state graph gates every tool: quantity before capacity,
+    capacity before price, validated price before close. Illegal orderings are
+    unreachable rather than discouraged.<br>
+    <b>Money</b> — a cost model owns the floor; the agent proposes and a validator disposes.<br>
+    <b>Proof</b> — Claim → Evidence → Receipt. Only channels the agent cannot write to
+    can verify. A receipt hand-edited to say VERIFIED re-derives as UNVERIFIED.
+  </div>
+</div>
+
+<script>
+const API = location.origin;
+let PHONE = "";
+const $ = (id) => document.getElementById(id);
+const say = (t, cls) => { $("msg").className = "msg " + (cls||""); $("msg").textContent = t; };
+const step = (n) => ["s1","s2","s3"].forEach((s,i)=> $(s).classList.toggle("on", i===n));
+const money = (n) => "$" + Number(n).toFixed(2);
+
+function kv(k, v, note){
+  return `<div class="kv"><div class="k">${k}</div><div class="v">${v}</div>` +
+         (note ? `<div class="n">${note}</div>` : "") + `</div>`;
+}
+
+async function load(){
+  try{
+    const c = await (await fetch(API + "/demo/constraints")).json();
+    $("persona").innerHTML =
+      kv("Calling as", c.persona) +
+      kv("On behalf of", c.business) +
+      kv("Selling", c.unit, c.offer || "");
+    $("limits").innerHTML =
+      kv("Price floor", money(c.floor), `for ${c.sample_qty} ${c.unit} — cannot go below, ever`) +
+      kv("Opening target", money(c.target), `${c.target_margin_pct}% margin; it starts here`) +
+      kv("Unit cost", money(c.unit_cost), `${c.min_margin_pct}% minimum margin`) +
+      kv("Capacity", c.capacity_available + " / " + c.capacity_total,
+         `${c.unit} available this week`) +
+      kv("Max discount", c.max_discount_pct + "%", "one concession, then it restructures") +
+      kv("Walks away after", c.max_declines + " refusals", "it will not badger you");
+  }catch(e){ $("persona").textContent = "Could not reach the agent config."; }
+}
+
+async function receipts(){
+  try{
+    const d = await (await fetch(API + "/demo/receipts")).json();
+    if(!d.receipts.length){
+      $("receipts").innerHTML = '<span style="color:var(--mid)">No completed calls yet. ' +
+        'Make one above and this fills in.</span>'; return;
+    }
+    $("receipts").innerHTML = d.receipts.map(r => `
+      <div class="rc"><div style="font-size:13px;color:var(--mid)">${r.headline}</div>
+      ${r.claims.map(c => `
+        <div class="d"><span class="chip ${c.verdict}">${c.verdict}</span> ${c.description}</div>
+        <div class="ev">expects: ${c.expected}</div>
+        ${c.evidence.map(e => `<div class="ev">${e.independent
+            ? '<span class="ind">independent</span>' : 'agent-only'} · ${e.channel}: ${e.summary}</div>`).join("")}
+      `).join("")}</div>`).join("");
+  }catch(e){}
+}
+
+async function post(path, body){
+  const r = await fetch(API + path, {method:"POST",
+    headers:{"Content-Type":"application/json"}, body: JSON.stringify(body)});
+  return r.json();
+}
+
+async function sendCode(e){
+  e.preventDefault(); $("b1").disabled = true; say("Sending…");
+  const d = await post("/demo/verify", {phone: $("phone").value});
+  $("b1").disabled = false;
+  if(!d.ok){ say(d.error || "Failed.", "err"); return; }
+  PHONE = d.phone;
+  if(d.already_verified){ say("Already verified — ready to call.", "ok"); step(2); }
+  else { say("Code sent to " + PHONE, "ok"); step(1); $("code").focus(); }
+}
+
+async function confirmCode(e){
+  e.preventDefault(); $("b2").disabled = true; say("Checking…");
+  const d = await post("/demo/confirm", {phone: PHONE, code: $("code").value});
+  $("b2").disabled = false;
+  if(!d.ok){ say(d.error || "Failed.", "err"); return; }
+  say("Verified.", "ok"); step(2);
+}
+
+async function placeCall(e){
+  e.preventDefault(); $("b3").disabled = true; say("Dialling " + PHONE + "…");
+  const d = await post("/demo/call", {phone: PHONE});
+  if(!d.ok){ $("b3").disabled = false; say(d.error || "Failed.", "err"); return; }
+  say("Calling now — pick up. The receipt appears below when the call ends.", "ok");
+  setInterval(receipts, 4000);
+}
+
+load(); receipts(); setInterval(receipts, 15000);
+</script>

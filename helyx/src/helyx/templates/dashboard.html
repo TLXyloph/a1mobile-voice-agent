@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Helyx — Operator Console</title>
+<style>
+  :root{
+    --bg:#0b0d10; --panel:#12161b; --panel2:#171c23; --line:#232a33;
+    --fg:#e6edf3; --dim:#8b98a5; --accent:#5ac8fa;
+    --ok:#3fb950; --warn:#d29922; --bad:#f85149; --agent:#8957e5;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+       font:14px/1.5 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif}
+  header{display:flex;align-items:center;gap:16px;padding:12px 20px;
+         background:var(--panel);border-bottom:1px solid var(--line);
+         position:sticky;top:0;z-index:10;flex-wrap:wrap}
+  .logo{font-weight:700;letter-spacing:.14em;font-size:16px}
+  .logo span{color:var(--accent)}
+  .meta{color:var(--dim);font-size:12px;font-family:ui-monospace,monospace}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+  .live .dot{background:var(--ok);box-shadow:0 0 8px var(--ok)}
+  .dead .dot{background:var(--bad)}
+  .headline{flex-basis:100%;font-size:13px;padding:8px 10px;border-radius:6px;
+            background:var(--panel2);border-left:3px solid var(--warn)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+        gap:14px;padding:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+        display:flex;flex-direction:column;min-height:260px;overflow:hidden}
+  .card h2{margin:0;padding:10px 14px;font-size:12px;letter-spacing:.1em;
+           text-transform:uppercase;color:var(--dim);
+           border-bottom:1px solid var(--line);background:var(--panel2)}
+  .body{padding:12px 14px;overflow:auto;flex:1;max-height:440px}
+  .row{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--line)}
+  input,textarea{flex:1;background:#0b0f14;border:1px solid var(--line);
+        color:var(--fg);border-radius:6px;padding:8px 10px;font:inherit}
+  button{background:var(--accent);color:#04121b;border:0;border-radius:6px;
+         padding:8px 14px;font-weight:600;cursor:pointer}
+  button.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+  button:disabled{opacity:.4;cursor:not-allowed}
+  .slot{display:flex;justify-content:space-between;gap:8px;padding:5px 0;
+        border-bottom:1px dashed var(--line);font-size:13px}
+  .slot b{font-weight:500;color:var(--dim)}
+  .filled{color:var(--ok)} .empty{color:var(--bad)}
+  .msg{margin-bottom:10px}
+  .msg .who{font-size:11px;color:var(--dim);text-transform:uppercase;
+            letter-spacing:.08em}
+  .msg.op .txt{border-left:2px solid var(--dim)}
+  .msg.hx .txt{border-left:2px solid var(--accent)}
+  .txt{padding:4px 0 4px 10px;white-space:pre-wrap}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;
+        font-weight:700;letter-spacing:.06em}
+  .p-confirmed{background:rgba(63,185,80,.15);color:var(--ok);border:1px solid var(--ok)}
+  .p-unconfirmed{background:rgba(210,153,34,.13);color:var(--warn);border:1px solid var(--warn)}
+  .p-contradicted{background:rgba(248,81,73,.13);color:var(--bad);border:1px solid var(--bad)}
+  .prop{border:1px solid var(--line);border-radius:8px;padding:10px;margin-bottom:10px;
+        background:var(--panel2)}
+  .prop .terms{font-size:15px;margin:6px 0}
+  .why{font-size:12px;color:var(--dim);font-style:italic}
+  .ev{font-size:12px;padding:5px 8px;margin-top:6px;border-radius:5px;
+      background:#0b0f14;border-left:3px solid var(--agent)}
+  .ev.indep{border-left-color:var(--ok)}
+  .ev .ch{font-family:ui-monospace,monospace;font-weight:700;font-size:10px;
+          letter-spacing:.06em;text-transform:uppercase}
+  .ev.indep .ch{color:var(--ok)} .ev .ch{color:var(--agent)}
+  .ladder{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+  .rung{padding:4px 9px;border-radius:6px;background:#0b0f14;
+        border:1px solid var(--line);font-family:ui-monospace,monospace;font-size:12px}
+  .rung.now{border-color:var(--accent);color:var(--accent);font-weight:700}
+  .rung.past{opacity:.45}
+  .turn{border-top:1px solid var(--line);padding:8px 0;font-size:13px}
+  .sup{color:var(--dim)} .agt{color:var(--fg)}
+  .viol{margin-top:5px;font-size:12px;color:var(--bad);
+        background:rgba(248,81,73,.08);padding:5px 8px;border-radius:5px}
+  .ev-log{font-family:ui-monospace,monospace;font-size:11px;color:var(--dim)}
+  .ev-log div{padding:2px 0;border-bottom:1px solid #1a1f26;white-space:nowrap;
+              overflow:hidden;text-overflow:ellipsis}
+  .ev-log b{color:var(--accent);font-weight:600}
+  .note{font-size:12px;color:var(--dim);padding:6px 0}
+  .err{color:var(--bad);font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">HEL<span>Y</span>X</div>
+  <div class="meta" id="conn"><span class="dot"></span><span id="connTxt">connecting…</span></div>
+  <div class="meta" id="modelInfo">model: —</div>
+  <div class="meta" id="callInfo">call: idle</div>
+  <div class="headline" id="headline">—</div>
+</header>
+
+<div class="grid">
+  <!-- INTAKE -->
+  <section class="card">
+    <h2>1 · Intake — negotiation parameters</h2>
+    <div class="body">
+      <div id="slots"></div>
+      <div class="note" id="gate"></div>
+      <div id="chat" style="margin-top:10px"></div>
+    </div>
+    <div class="row">
+      <input id="intakeIn" placeholder="e.g. 120 sourdough loaves from Kestrel Bakehouse, aim $4.25, never above $5, by 2026-08-14"/>
+      <button id="intakeBtn">Send</button>
+    </div>
+    <div class="row">
+      <button class="ghost" id="resetIntake">Reset intake</button>
+      <button id="startCall">Start call</button>
+    </div>
+  </section>
+
+  <!-- NEGOTIATION -->
+  <section class="card">
+    <h2>2 · Negotiation — limits enforced in arithmetic</h2>
+    <div class="body">
+      <div class="ladder" id="ladder"></div>
+      <div class="note" id="negMeta">No active negotiation.</div>
+      <div id="turns"></div>
+    </div>
+    <div class="row">
+      <input id="supplierIn" placeholder="What the supplier said…"/>
+      <button id="sayBtn">Reply</button>
+    </div>
+    <div class="row">
+      <button class="ghost" id="endCall">Hang up + email loop</button>
+    </div>
+  </section>
+
+  <!-- EVIDENCE -->
+  <section class="card">
+    <h2>3 · Evidence ledger — the agent cannot write here</h2>
+    <div class="body">
+      <div id="props"><div class="note">No proposals filed.</div></div>
+    </div>
+    <div class="row">
+      <input id="smsTo" placeholder="+1… supplier number"/>
+      <button id="smsBtn">Request written confirmation</button>
+    </div>
+    <div class="row">
+      <input id="humanIn" placeholder="Operator review (independent channel)…"/>
+      <button class="ghost" id="humanBtn">Vouch</button>
+    </div>
+  </section>
+
+  <!-- CHANNELS -->
+  <section class="card">
+    <h2>4 · Channels &amp; audit</h2>
+    <div class="body">
+      <div style="margin-bottom:10px">
+        <b style="font-size:12px;color:var(--dim)">SMS</b>
+        <div id="smsLog" class="ev-log"></div>
+      </div>
+      <div style="margin-bottom:10px">
+        <b style="font-size:12px;color:var(--dim)">EMAIL LOOP</b>
+        <div id="emailLog" class="ev-log"></div>
+      </div>
+      <b style="font-size:12px;color:var(--dim)">EVENT LOG</b>
+      <div id="events" class="ev-log"></div>
+    </div>
+    <div class="row"><button class="ghost" id="probeBtn">Probe models</button></div>
+  </section>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const usd = c => "$" + (c/100).toFixed(2);
+let STATE = null;
+
+async function post(url, body){
+  const r = await fetch(url, {method:"POST", headers:{"Content-Type":"application/json"},
+                             body: body?JSON.stringify(body):null});
+  const j = await r.json().catch(()=>({}));
+  if(!r.ok) alert((j.error||"request failed") + (j.missing?("\nmissing: "+j.missing.join(", ")):""));
+  return j;
+}
+
+function render(s){
+  STATE = s;
+  $("headline").textContent = s.headline || "—";
+  $("callInfo").textContent = "call: " + (s.call_active ? "ACTIVE" : "idle");
+
+  // intake slots
+  const it = s.intake || {};
+  const req = it.required_fields || [];
+  const slots = it.slots || {};
+  $("slots").innerHTML = req.map(f=>{
+    const v = slots[f];
+    const has = v!==undefined && v!==null && v!=="";
+    let disp = has ? v : "missing";
+    if(has && f.endsWith("_cents")) disp = usd(Number(v)>=1000?Number(v):Number(v)*100);
+    return `<div class="slot"><b>${f}</b><span class="${has?'filled':'empty'}">${disp}</span></div>`;
+  }).join("");
+  $("gate").innerHTML = it.ready
+    ? `<span class="pill p-confirmed">MANDATE VALID</span> call is unblocked`
+    : `<span class="pill p-unconfirmed">CALL BLOCKED</span> ${it.validation_error || ("missing: " + (it.missing||[]).join(", "))}`;
+  $("startCall").disabled = !it.ready;
+  $("chat").innerHTML = (it.transcript||[]).slice(-8).map(t=>
+    `<div class="msg ${t.role==='operator'?'op':'hx'}"><div class="who">${t.role}</div>
+     <div class="txt">${esc(t.text)}</div></div>`).join("");
+  if(it.served_model) $("modelInfo").textContent = "model: " + it.served_model;
+
+  // negotiation
+  const n = s.negotiation;
+  if(n){
+    const m = n.mandate;
+    $("negMeta").innerHTML =
+      `${m.quantity} × <b>${esc(m.item)}</b> · ${esc(m.counterparty_name)} ·
+       target ${usd(m.target_unit_price_cents)} · ceiling ${usd(m.ceiling_unit_price_cents)} ·
+       round ${Math.min(n.round_index+1, m.max_rounds)}/${m.max_rounds} ·
+       outcome <b>${n.outcome}</b>`;
+    $("ladder").innerHTML = (n.ladder||[]).map((c,i)=>
+      `<div class="rung ${i===n.round_index?'now':(i<n.round_index?'past':'')}">R${i+1} ${usd(c)}</div>`).join("");
+    $("turns").innerHTML = (n.turns||[]).map(t=>`
+      <div class="turn">
+        <div class="sup">▸ supplier: ${esc(t.supplier_said)}</div>
+        <div class="agt">◂ helyx: ${esc(t.agent_said)}</div>
+        <div class="why">authorised this round: ${usd(t.authorized_offer_cents)}${
+          t.decision? " · decision: "+t.decision.move+" — "+esc(t.decision.reason):""}</div>
+        ${(t.violations||[]).map(v=>`<div class="viol">BLOCKED unauthorised amount ${esc(v.text)} — ${esc(v.reason)}${t.replaced?" · line replaced with a mandate-safe reply":""}</div>`).join("")}
+      </div>`).join("");
+    $("sayBtn").disabled = !!n.finished;
+  } else {
+    $("negMeta").textContent = "No active negotiation.";
+    $("ladder").innerHTML = ""; $("turns").innerHTML = "";
+  }
+
+  // proposals
+  const ps = s.proposals || [];
+  $("props").innerHTML = ps.length ? ps.map(p=>`
+    <div class="prop">
+      <span class="pill p-${p.status}">${p.status.toUpperCase()}</span>
+      <div class="terms">${p.quantity} × ${esc(p.item)} @ <b>${usd(p.unit_price_cents)}</b>
+        <span style="color:var(--dim)">= ${usd(p.total_cents)} · ${p.fulfilment_date}</span></div>
+      <div class="why">${esc(p.why)}</div>
+      <div class="why">must be restated to confirm: ${(p.expected_tokens||[]).join(" + ")}</div>
+      ${(p.evidence||[]).map(e=>`
+        <div class="ev ${e.independent?'indep':''}">
+          <span class="ch">${e.channel}${e.independent?" · independent":" · agent word only"}</span>
+          <div>${esc(e.body)}</div></div>`).join("")}
+    </div>`).join("") : `<div class="note">No proposals filed.</div>`;
+
+  $("smsLog").innerHTML = (s.sms_log||[]).map(x=>
+    `<div><b>${x.direction==='in'?'IN ':'OUT'}</b> ${esc(x.text||"")}</div>`).join("")
+    || `<div>none</div>`;
+  $("emailLog").innerHTML = (s.email_log||[]).map(x=>
+    `<div><b>${x.outcome && x.outcome.delivered?'SENT':'COMPOSED'}</b> ${esc(x.subject||"")} → ${esc(x.to||"")} (inbound found: ${x.inbound_found})</div>`).join("")
+    || `<div>none</div>`;
+  $("events").innerHTML = (s.events||[]).slice().reverse().map(e=>
+    `<div><b>${e.kind}</b> ${e.at.slice(11,19)}</div>`).join("");
+
+  const mr = s.model_report;
+  if(mr && mr.results){
+    const ok = Object.entries(mr.results).filter(([,v])=>v.ok).map(([k,v])=>`${k}→${v.served_model}`);
+    if(ok.length) $("modelInfo").textContent = "model: " + ok.join(" | ");
+  }
+}
+
+function esc(t){ return String(t==null?"":t).replace(/[<>&]/g, c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c])); }
+
+// live stream
+function connect(){
+  const es = new EventSource("/api/stream");
+  es.onopen = ()=>{ $("conn").className="meta live"; $("connTxt").textContent="live"; };
+  es.onerror = ()=>{ $("conn").className="meta dead"; $("connTxt").textContent="reconnecting…"; };
+  es.onmessage = ev => { try{ render(JSON.parse(ev.data).state); }catch(e){} };
+}
+connect();
+
+$("intakeBtn").onclick = async ()=>{
+  const v = $("intakeIn").value.trim(); if(!v) return;
+  $("intakeIn").value=""; $("intakeBtn").disabled=true;
+  await post("/api/intake",{text:v}); $("intakeBtn").disabled=false;
+};
+$("intakeIn").addEventListener("keydown",e=>{ if(e.key==="Enter") $("intakeBtn").click(); });
+$("resetIntake").onclick = ()=>post("/api/intake/reset");
+$("startCall").onclick = ()=>post("/api/call/start");
+$("sayBtn").onclick = async ()=>{
+  const v = $("supplierIn").value.trim(); if(!v) return;
+  $("supplierIn").value=""; $("sayBtn").disabled=true;
+  await post("/api/call/say",{text:v}); $("sayBtn").disabled=false;
+};
+$("supplierIn").addEventListener("keydown",e=>{ if(e.key==="Enter") $("sayBtn").click(); });
+$("endCall").onclick = ()=>post("/api/call/end");
+$("smsBtn").onclick = ()=>post("/api/sms/confirm",{to:$("smsTo").value.trim()});
+$("humanBtn").onclick = async ()=>{
+  const v=$("humanIn").value.trim(); if(!v) return;
+  $("humanIn").value=""; await post("/api/evidence/human",{body:v,supports:true});
+};
+$("probeBtn").onclick = async ()=>{ const r = await fetch("/api/models"); render((await (await fetch("/api/state")).json())); await r; };
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+- generic [ref=f7e2]:
+  - banner [ref=f7e3]:
+    - generic [ref=f7e4]:
+      - text: Expedit
+      - emphasis [ref=f7e5]: o
+      - text: r
+    - generic [ref=f7e6]: outbound call intake
+    - generic [ref=f7e7]: ready
+  - main [ref=f7e9]:
+    - generic [ref=f7e12]:
+      - generic [ref=f7e13]:
+        - textbox "Describe the job — who to call and what you want out of it." [ref=f7e14]
+        - button "Send" [ref=f7e15] [cursor=pointer]
+      - generic [ref=f7e16]: Enter to send · Shift+Enter for a new line
+    - complementary [ref=f7e17]:
+      - generic [ref=f7e18]:
+        - heading "The brief" [level=2] [ref=f7e19]
+        - paragraph [ref=f7e20]: Nothing established yet.
+      - generic [ref=f7e23]:
+        - paragraph [ref=f7e24]: No escalation. Whatever you set here is the whole mandate. Nobody is asked mid-call — the agent finds a deal inside these limits or ends the call politely.
+        - button "Launch the call" [disabled] [ref=f7e25]
+        - list

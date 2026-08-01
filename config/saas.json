@@ -1,0 +1,260 @@
+{
+  "_comment": "B2B SaaS vertical. Numbers are data, not code - src/verticals/saas reads this and never hardcodes a price. Prospects are labelled sample data and are rendered as such in the UI.",
+
+  "product": {
+    "name": "Ledgerline",
+    "plan": "Team",
+    "one_liner": "Reconciliation for finance teams that still close the books in spreadsheets."
+  },
+
+  "list_terms": {
+    "price_per_seat_month": 40,
+    "seats": 25,
+    "term_months": 12,
+    "discount_pct": 0,
+    "free_months": 0,
+    "onboarding_fee": 2500,
+    "monthly_cost_to_serve_per_seat": 6,
+    "cac": 9000,
+    "currency": "USD",
+    "plan": "Team"
+  },
+
+  "floor": {
+    "min_contract_value": 11500,
+    "max_payback_months": 12,
+    "min_gross_margin_pct": 70,
+    "max_discount_pct": 10,
+    "max_free_months": 2,
+    "max_onboarding_waiver": 2500,
+    "max_seat_reduction": 5,
+    "max_term_reduction": 0,
+    "min_seats": 10,
+    "min_term_months": 12,
+    "currency": "USD"
+  },
+
+  "capacity": {
+    "seats_onboardable_per_month": 120,
+    "note": "Not inventory. This is how many new seats implementation and support can actually stand up this month - two solutions engineers at roughly 60 seats each. Selling past it produces a churned account, not a bigger month."
+  },
+
+  "campaign": {
+    "name": "Finance-team reconciliation - Q3 outbound",
+    "icp": "Finance teams of 10-60 at 100-800 person companies still closing the month in spreadsheets, on NetSuite or QuickBooks, where a controller has publicly posted about close times. The operator owns this definition; we do not widen it to lengthen the list.",
+    "offer": "A twelve-month Team subscription at a per-seat rate, onboarding inside two weeks, with the first close run alongside their existing process.",
+    "window": {
+      "earliest_date": "2026-08-03",
+      "latest_date": "2026-12-18"
+    },
+    "notes": "No escalation on this campaign. There is nobody to ask mid-call: the agent closes inside the floor or thanks them and ends. Every concession must be re-checked against the combined deal, never against its own cap - three capped concessions stack into a 25% discount."
+  },
+
+  "sample_prospects": [
+    {
+      "id": "sample_northwind",
+      "company": "Northwind Logistics",
+      "contact": "Dana Okafor",
+      "title": "Controller",
+      "phone": "+14155550142",
+      "email": "dana@northwind-logistics.example",
+      "seats": 28,
+      "stage": "closed_won",
+      "source": "Posted in r/Accounting about a 14-day close",
+      "notes": "Signed at list minus 8%. Order form came back by email during the call.",
+      "evidence": [
+        {
+          "channel": "agent_assertion",
+          "summary": "Dana said yes to 28 seats at $36.80/seat/month, 12 months.",
+          "about": "close",
+          "supports": true
+        },
+        {
+          "channel": "inbound_email",
+          "summary": "Countersigned order form from dana@northwind-logistics.example, 28 seats, 12 months, $14,864.80 TCV.",
+          "about": "close",
+          "supports": true
+        }
+      ],
+      "terms": {
+        "price_per_seat_month": 40,
+        "seats": 28,
+        "term_months": 12,
+        "discount_pct": 8,
+        "free_months": 0,
+        "onboarding_fee": 2500,
+        "monthly_cost_to_serve_per_seat": 6,
+        "cac": 9000
+      }
+    },
+    {
+      "id": "sample_brightpath",
+      "company": "Brightpath Health",
+      "contact": "Marcus Lai",
+      "title": "VP Finance",
+      "phone": "+16175550188",
+      "email": "mlai@brightpath.example",
+      "seats": 22,
+      "stage": "demo_booked",
+      "source": "Hiring two staff accountants, JD mentions manual reconciliation",
+      "notes": "Demo on the calendar. Pushed hard on price; agent held at 10% and did not stack free months.",
+      "evidence": [
+        {
+          "channel": "agent_assertion",
+          "summary": "Marcus agreed to a Thursday 2pm demo.",
+          "about": "meeting",
+          "supports": true
+        },
+        {
+          "channel": "provider_api",
+          "summary": "Google Calendar event 4f2a91 created, both attendees accepted.",
+          "about": "meeting",
+          "supports": true
+        }
+      ],
+      "terms": {
+        "price_per_seat_month": 40,
+        "seats": 22,
+        "term_months": 12,
+        "discount_pct": 10,
+        "free_months": 0,
+        "onboarding_fee": 2500,
+        "monthly_cost_to_serve_per_seat": 6,
+        "cac": 9000
+      }
+    },
+    {
+      "id": "sample_kestrel",
+      "company": "Kestrel Manufacturing",
+      "contact": "Priya Raman",
+      "title": "Head of Accounting",
+      "phone": "+13125550119",
+      "email": "praman@kestrelmfg.example",
+      "seats": 35,
+      "stage": "qualified",
+      "source": "Seeded list - operator's own CRM export",
+      "notes": "Confirmed spreadsheet close and 35 seats. Asked for 15% - outside the cap, agent declined and did not offer free months instead.",
+      "evidence": [
+        {
+          "channel": "agent_assertion",
+          "summary": "Priya confirmed 35 finance seats and a 9-day close.",
+          "about": "contact",
+          "supports": true
+        }
+      ],
+      "terms": {
+        "price_per_seat_month": 40,
+        "seats": 35,
+        "term_months": 12,
+        "discount_pct": 10,
+        "free_months": 0,
+        "onboarding_fee": 2500,
+        "monthly_cost_to_serve_per_seat": 6,
+        "cac": 9000
+      }
+    },
+    {
+      "id": "sample_tidewater",
+      "company": "Tidewater Foods",
+      "contact": "Alan Wu",
+      "title": "Controller",
+      "phone": "+12065550173",
+      "email": "awu@tidewaterfoods.example",
+      "seats": 14,
+      "stage": "contacted",
+      "source": "Seeded list - operator's own CRM export",
+      "notes": "Reached the desk, asked for a callback Tuesday.",
+      "evidence": [],
+      "terms": {
+        "price_per_seat_month": 40,
+        "seats": 14,
+        "term_months": 12,
+        "discount_pct": 0,
+        "free_months": 0,
+        "onboarding_fee": 2500,
+        "monthly_cost_to_serve_per_seat": 6,
+        "cac": 9000
+      }
+    },
+    {
+      "id": "sample_arbor",
+      "company": "Arbor Dental Group",
+      "contact": "Renee Castellanos",
+      "title": "Finance Manager",
+      "phone": "+15105550164",
+      "email": "renee@arbordental.example",
+      "seats": 11,
+      "stage": "targeted",
+      "source": "Seeded list - operator's own CRM export",
+      "notes": "Not yet called.",
+      "evidence": [],
+      "terms": null
+    },
+    {
+      "id": "sample_summit",
+      "company": "Summit Freight",
+      "contact": "Jorge Medina",
+      "title": "Director of Finance",
+      "phone": "+17205550151",
+      "email": "jmedina@summitfreight.example",
+      "seats": 40,
+      "stage": "targeted",
+      "source": "Controller posted about closing in 12 days",
+      "notes": "Not yet called.",
+      "terms": null
+    },
+    {
+      "id": "sample_halcyon",
+      "company": "Halcyon Media",
+      "contact": "Sam Ortiz",
+      "title": "Controller",
+      "phone": "+13235550196",
+      "email": "sortiz@halcyonmedia.example",
+      "seats": 12,
+      "stage": "closed_lost",
+      "source": "Seeded list - operator's own CRM export",
+      "notes": "Wanted 20% plus three free months plus a waived setup fee. That combination is a 40% effective discount; the agent walked rather than stacking it. Correct outcome.",
+      "evidence": [],
+      "terms": {
+        "price_per_seat_month": 40,
+        "seats": 12,
+        "term_months": 12,
+        "discount_pct": 20,
+        "free_months": 3,
+        "onboarding_fee": 0,
+        "monthly_cost_to_serve_per_seat": 6,
+        "cac": 9000
+      }
+    },
+    {
+      "id": "sample_lattice",
+      "company": "Lattice Biosciences",
+      "contact": "Wei Chen",
+      "title": "Controller",
+      "phone": "+18585550137",
+      "email": "wchen@latticebio.example",
+      "seats": 18,
+      "stage": "qualified",
+      "source": "Hiring a senior accountant, JD mentions month-end close",
+      "notes": "Agent claimed a verbal yes on the call. No independent evidence has arrived, so this stays at qualified - it is the case the board exists to show.",
+      "evidence": [
+        {
+          "channel": "agent_assertion",
+          "summary": "Wei said 'yes, send the paperwork, we're in' - agent-only, proves nothing.",
+          "about": "close",
+          "supports": true
+        }
+      ],
+      "terms": {
+        "price_per_seat_month": 40,
+        "seats": 18,
+        "term_months": 12,
+        "discount_pct": 5,
+        "free_months": 1,
+        "onboarding_fee": 2500,
+        "monthly_cost_to_serve_per_seat": 6,
+        "cac": 9000
+      }
+    }
+  ]
+}

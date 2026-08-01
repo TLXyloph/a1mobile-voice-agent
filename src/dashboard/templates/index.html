@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EXPEDITOR — operator rail</title>
+<link rel="stylesheet" href="/static/dash.css">
+</head>
+<body>
+
+<a class="skip" href="#rail">Skip to approval rail</a>
+
+<header class="masthead">
+  <div class="masthead-id">
+    <span class="wordmark">EXPEDITOR</span>
+    <span class="masthead-sub">OUTBOUND&nbsp;RAIL&nbsp;/&nbsp;GOLDEN&nbsp;CRUMB&nbsp;BAKERY</span>
+  </div>
+  <div class="masthead-meta">
+    <span class="meta-cell">
+      <span class="meta-k">SHIFT CLOCK</span>
+      <span class="meta-v tnum" id="wallclock">--:--:--</span>
+    </span>
+    <span class="meta-cell">
+      <span class="meta-k">FEED</span>
+      <span class="meta-v" id="sync"><i class="sync-dot" aria-hidden="true"></i>POLL 2s</span>
+    </span>
+  </div>
+</header>
+
+<main id="board">
+{% include "board.html" %}
+</main>
+
+<footer class="colophon">
+  <span>NOTHING ON THIS BOARD IS MARKED DONE BY THE AGENT.</span>
+  <span>A STAMP IS SET BY AN INDEPENDENT CHANNEL — INBOUND SMS, PROVIDER API, WEB CHECK — OR IT IS NOT SET.</span>
+</footer>
+
+<script src="/static/dash.js" defer></script>
+</body>
+</html>

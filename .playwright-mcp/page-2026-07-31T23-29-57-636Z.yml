@@ -1,0 +1,122 @@
+- generic [active] [ref=f10e1]:
+  - banner [ref=f10e2]:
+    - generic [ref=f10e3]:
+      - generic [ref=f10e4]:
+        - heading "Ledgerline — outbound pipeline" [level=1] [ref=f10e5]
+        - generic [ref=f10e6]: a deal is closed when evidence says so, not when the agent does
+      - navigation [ref=f10e7]:
+        - link "Pipeline" [ref=f10e8] [cursor=pointer]:
+          - /url: /
+        - link "Deal economics" [ref=f10e9] [cursor=pointer]:
+          - /url: /economics
+  - generic [ref=f10e10]:
+    - generic [ref=f10e11]:
+      - strong [ref=f10e12]: Sample data.
+      - text: Prospects marked
+      - emphasis [ref=f10e13]: sample
+      - text: are seeded from
+      - code [ref=f10e14]: config/saas.json
+      - text: so the board is not empty. They were walked through the same transitions as a real prospect, which is why the closed-won row has an independent artifact behind it.
+    - generic [ref=f10e15]:
+      - generic [ref=f10e16]:
+        - generic [ref=f10e17]: Prospects
+        - generic [ref=f10e18]: "8"
+      - generic [ref=f10e19]:
+        - generic [ref=f10e20]: Open pipeline
+        - generic [ref=f10e21]: $48.9k
+        - generic [ref=f10e22]: 4 deals with terms on the table
+      - generic [ref=f10e23]:
+        - generic [ref=f10e24]: Closed won
+        - generic [ref=f10e25]: $14.9k
+        - generic [ref=f10e26]: every one backed by an independent artifact
+      - generic [ref=f10e27]:
+        - generic [ref=f10e28]: Onboarding load
+        - generic [ref=f10e29]: 28 / 120 seats
+        - generic [ref=f10e30]: implementation bandwidth this month, not inventory
+    - generic [ref=f10e31]:
+      - generic [ref=f10e32]:
+        - heading "Targeted 2" [level=2] [ref=f10e33]:
+          - text: Targeted
+          - generic [ref=f10e34]: "2"
+        - link "Arbor Dental Group Renee Castellanos · 11 seats no evidence no terms" [ref=f10e35] [cursor=pointer]:
+          - /url: /prospect/sample_arbor
+          - generic [ref=f10e36]: Arbor Dental Group
+          - generic [ref=f10e37]: Renee Castellanos · 11 seats
+          - generic [ref=f10e38]:
+            - generic [ref=f10e39]: no evidence
+            - generic [ref=f10e40]: no terms
+        - link "Summit Freight Jorge Medina · 40 seats no evidence no terms" [ref=f10e41] [cursor=pointer]:
+          - /url: /prospect/sample_summit
+          - generic [ref=f10e42]: Summit Freight
+          - generic [ref=f10e43]: Jorge Medina · 40 seats
+          - generic [ref=f10e44]:
+            - generic [ref=f10e45]: no evidence
+            - generic [ref=f10e46]: no terms
+      - generic [ref=f10e47]:
+        - heading "Contacted 1" [level=2] [ref=f10e48]:
+          - text: Contacted
+          - generic [ref=f10e49]: "1"
+        - link "Tidewater Foods Alan Wu · 14 seats no evidence $9,220" [ref=f10e50] [cursor=pointer]:
+          - /url: /prospect/sample_tidewater
+          - generic [ref=f10e51]: Tidewater Foods
+          - generic [ref=f10e52]: Alan Wu · 14 seats
+          - generic [ref=f10e53]:
+            - generic [ref=f10e54]: no evidence
+            - generic [ref=f10e55]: $9,220
+      - generic [ref=f10e56]:
+        - heading "Qualified 2" [level=2] [ref=f10e57]:
+          - text: Qualified
+          - generic [ref=f10e58]: "2"
+        - link "Kestrel Manufacturing Priya Raman · 35 seats no evidence $17.6k" [ref=f10e59] [cursor=pointer]:
+          - /url: /prospect/sample_kestrel
+          - generic [ref=f10e60]: Kestrel Manufacturing
+          - generic [ref=f10e61]: Priya Raman · 35 seats
+          - generic [ref=f10e62]:
+            - generic [ref=f10e63]: no evidence
+            - generic [ref=f10e64]: $17.6k
+        - link "Lattice Biosciences Wei Chen · 18 seats agent only $10.0k" [ref=f10e65] [cursor=pointer]:
+          - /url: /prospect/sample_lattice
+          - generic [ref=f10e66]: Lattice Biosciences
+          - generic [ref=f10e67]: Wei Chen · 18 seats
+          - generic [ref=f10e68]:
+            - generic [ref=f10e69]: agent only
+            - generic [ref=f10e70]: $10.0k
+      - generic [ref=f10e71]:
+        - heading "Demo booked 1" [level=2] [ref=f10e72]:
+          - text: Demo booked
+          - generic [ref=f10e73]: "1"
+        - link "Brightpath Health Marcus Lai · 22 seats no evidence $12.0k" [ref=f10e74] [cursor=pointer]:
+          - /url: /prospect/sample_brightpath
+          - generic [ref=f10e75]: Brightpath Health
+          - generic [ref=f10e76]: Marcus Lai · 22 seats
+          - generic [ref=f10e77]:
+            - generic [ref=f10e78]: no evidence
+            - generic [ref=f10e79]: $12.0k
+      - generic [ref=f10e80]:
+        - heading "Closed won 1" [level=2] [ref=f10e81]:
+          - text: Closed won
+          - generic [ref=f10e82]: "1"
+        - link "Northwind Logistics Dana Okafor · 28 seats verified $14.9k" [ref=f10e83] [cursor=pointer]:
+          - /url: /prospect/sample_northwind
+          - generic [ref=f10e84]: Northwind Logistics
+          - generic [ref=f10e85]: Dana Okafor · 28 seats
+          - generic [ref=f10e86]:
+            - generic [ref=f10e87]: verified
+            - generic [ref=f10e88]: $14.9k
+      - generic [ref=f10e89]:
+        - heading "Closed lost 1" [level=2] [ref=f10e90]:
+          - text: Closed lost
+          - generic [ref=f10e91]: "1"
+        - link "Halcyon Media Sam Ortiz · 12 seats no evidence $3,456" [ref=f10e92] [cursor=pointer]:
+          - /url: /prospect/sample_halcyon
+          - generic [ref=f10e93]: Halcyon Media
+          - generic [ref=f10e94]: Sam Ortiz · 12 seats
+          - generic [ref=f10e95]:
+            - generic [ref=f10e96]: no evidence
+            - generic [ref=f10e97]: $3,456
+    - paragraph [ref=f10e98]:
+      - text: The pill on each card is what stands behind that prospect’s
+      - emphasis [ref=f10e99]: close
+      - text: ", not how the call felt."
+      - strong [ref=f10e100]: agent only
+      - text: means the agent believes it closed and nothing independent agrees yet — those cards do not move, however confident the transcript sounds.

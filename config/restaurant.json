@@ -1,0 +1,31 @@
+{
+  "business": {
+    "name": "Golden Crumb Bakery",
+    "phone": "+14155550142",
+    "unit": "muffins",
+    "unit_singular": "muffin",
+    "currency": "USD"
+  },
+  "weekly_capacity": 600,
+  "cost_model": {
+    "materials_per_unit": "0.62",
+    "labor_per_unit": "0.72",
+    "transport_per_unit": "0.11",
+    "min_margin_pct": "25",
+    "target_margin_pct": "40",
+    "unit": "muffin",
+    "currency": "USD"
+  },
+  "database": "evidence/restaurant.db",
+  "evidence_dir": "evidence",
+  "exports_dir": "evidence/exports",
+  "sample_data": {
+    "enabled": true,
+    "min_orders": 12
+  },
+  "sheets": {
+    "spreadsheet_id": "",
+    "credentials_path": "config/google-sheets.json",
+    "token_env": "GOOGLE_SHEETS_TOKEN"
+  }
+}

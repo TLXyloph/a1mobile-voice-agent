@@ -1,0 +1,101 @@
+- generic [ref=f9e2]:
+  - banner [ref=f9e3]:
+    - generic [ref=f9e4]:
+      - text: Expedit
+      - emphasis [ref=f9e5]: o
+      - text: r
+    - generic [ref=f9e6]: outbound call intake
+    - generic [ref=f9e7]: interviewing
+  - main [ref=f9e9]:
+    - generic [ref=f9e10]:
+      - generic [ref=f9e11]:
+        - generic [ref=f9e93]:
+          - generic [ref=f9e94]: Intake
+          - generic [ref=f9e95]: "I run outbound phone calls for you. Tell me what you need done - who to call and what you want out of it - and I will ask for whatever is still missing. I place the call only once the whole brief is filled in on the right, and I stick to the limits you set here: there is nobody to ask mid-call."
+        - generic [ref=f9e96]:
+          - generic [ref=f9e97]: You
+          - generic [ref=f9e98]: I run Rosewater Bakehouse. I want to sell a standing weekly breakfast catering order to Marlow Dental on 415-555-0142 — about 30 people, two pastries each.
+        - generic [ref=f9e99]:
+          - generic [ref=f9e100]: Intake
+          - generic [ref=f9e101]: "Got it — this is a sale, and I have the business, target, and rough size. I still need the exact ask and the date limits: what should I ask Marlow Dental to agree to, and what is the earliest and latest date I’m allowed to commit to?"
+      - generic [ref=f9e15]:
+        - generic [ref=f9e16]:
+          - textbox "Describe the job — who to call and what you want out of it." [active] [ref=f9e17]
+          - button "Send" [ref=f9e18] [cursor=pointer]
+        - generic [ref=f9e19]: Enter to send · Shift+Enter for a new line
+    - complementary [ref=f9e20]:
+      - generic [ref=f9e21]:
+        - heading "The brief" [level=2] [ref=f9e22]
+        - paragraph [ref=f9e23]: 5 of 14 established.
+      - generic [ref=f9e25]:
+        - generic [ref=f9e103]:
+          - heading "The job" [level=3] [ref=f9e104]
+          - generic [ref=f9e105]:
+            - generic [ref=f9e106]:
+              - term [ref=f9e107]: Task type
+              - definition [ref=f9e108]: a sale
+            - generic [ref=f9e109]:
+              - term [ref=f9e110]: Outcome wanted
+              - definition [ref=f9e111]: — not yet
+            - generic [ref=f9e112]:
+              - term [ref=f9e113]: Calling on behalf of
+              - definition [ref=f9e114]: Rosewater Bakehouse
+        - generic [ref=f9e115]:
+          - heading "Who to call" [level=3] [ref=f9e116]
+          - generic [ref=f9e118]:
+            - term [ref=f9e119]: Who to call
+            - definition [ref=f9e120]:
+              - generic [ref=f9e121]: Marlow Dental · +14155550142
+        - generic [ref=f9e122]:
+          - heading "What is on offer" [level=3] [ref=f9e123]
+          - generic [ref=f9e124]:
+            - generic [ref=f9e125]:
+              - term [ref=f9e126]: The offer
+              - definition [ref=f9e127]: — not yet
+            - generic [ref=f9e128]:
+              - term [ref=f9e129]: Unit
+              - definition [ref=f9e130]: — not yet
+            - generic [ref=f9e131]:
+              - term [ref=f9e132]: Units vs headcount
+              - definition [ref=f9e133]: 30 people x 2 pastries each = 60 pastries total; quantity is pastries, not people
+        - generic [ref=f9e134]:
+          - heading "Capacity" [level=3] [ref=f9e135]
+          - generic [ref=f9e137]:
+            - term [ref=f9e138]: Capacity
+            - definition [ref=f9e139]: 60 units
+        - generic [ref=f9e140]:
+          - heading "Unit economics" [level=3] [ref=f9e141]
+          - generic [ref=f9e143]:
+            - term [ref=f9e144]: Per unit
+            - definition [ref=f9e145]: — not yet
+        - generic [ref=f9e146]:
+          - heading "Hard limits" [level=3] [ref=f9e147]
+          - generic [ref=f9e148]:
+            - generic [ref=f9e149]:
+              - term [ref=f9e150]: Max discount
+              - definition [ref=f9e151]: — not yet
+            - generic [ref=f9e152]:
+              - term [ref=f9e153]: Date window
+              - definition [ref=f9e154]: — not yet
+            - generic [ref=f9e155]:
+              - term [ref=f9e156]: Max quantity
+              - definition [ref=f9e157]: — not yet
+        - generic [ref=f9e158]:
+          - heading "Definition of done" [level=3] [ref=f9e159]
+          - generic [ref=f9e160]:
+            - generic [ref=f9e161]:
+              - term [ref=f9e162]: What counts as done
+              - definition [ref=f9e163]: — not yet
+            - generic [ref=f9e164]:
+              - term [ref=f9e165]: Confirmation lands at
+              - definition [ref=f9e166]: — not yet
+      - generic [ref=f9e83]:
+        - paragraph [ref=f9e84]: No escalation. Whatever you set here is the whole mandate. Nobody is asked mid-call — the agent finds a deal inside these limits or ends the call politely.
+        - button "Launch the call" [disabled] [ref=f9e85]
+        - list [ref=f9e86]:
+          - listitem [ref=f9e167]: "· still need: outcome wanted"
+          - listitem [ref=f9e168]: "· still need: the offer"
+          - listitem [ref=f9e169]: "· still need: unit"
+          - listitem [ref=f9e170]: "· still need: unit economics"
+          - listitem [ref=f9e171]: "· still need: max discount"
+          - listitem [ref=f9e172]: "· still need: date window"

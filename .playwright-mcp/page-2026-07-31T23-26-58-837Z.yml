@@ -1,0 +1,88 @@
+- generic [ref=f8e2]:
+  - banner [ref=f8e3]:
+    - generic [ref=f8e4]:
+      - text: Expedit
+      - emphasis [ref=f8e5]: o
+      - text: r
+    - generic [ref=f8e6]: outbound call intake
+    - generic [ref=f8e7]: ready
+  - main [ref=f8e9]:
+    - generic [ref=f8e10]:
+      - generic [ref=f8e12]:
+        - generic [ref=f8e13]: Intake
+        - generic [ref=f8e14]: "I run outbound phone calls for you. Tell me what you need done - who to call and what you want out of it - and I will ask for whatever is still missing. I place the call only once the whole brief is filled in on the right, and I stick to the limits you set here: there is nobody to ask mid-call."
+      - generic [ref=f8e15]:
+        - generic [ref=f8e16]:
+          - textbox "Describe the job — who to call and what you want out of it." [active] [ref=f8e17]
+          - button "Send" [ref=f8e18] [cursor=pointer]
+        - generic [ref=f8e19]: Enter to send · Shift+Enter for a new line
+    - complementary [ref=f8e20]:
+      - generic [ref=f8e21]:
+        - heading "The brief" [level=2] [ref=f8e22]
+        - paragraph [ref=f8e23]: 0 of 12 established.
+      - generic [ref=f8e25]:
+        - generic [ref=f8e26]:
+          - heading "The job" [level=3] [ref=f8e27]
+          - generic [ref=f8e28]:
+            - generic [ref=f8e29]:
+              - term [ref=f8e30]: Task type
+              - definition [ref=f8e31]: — not yet
+            - generic [ref=f8e32]:
+              - term [ref=f8e33]: Outcome wanted
+              - definition [ref=f8e34]: — not yet
+            - generic [ref=f8e35]:
+              - term [ref=f8e36]: Calling on behalf of
+              - definition [ref=f8e37]: — not yet
+        - generic [ref=f8e38]:
+          - heading "Who to call" [level=3] [ref=f8e39]
+          - generic [ref=f8e41]:
+            - term [ref=f8e42]: Who to call
+            - definition [ref=f8e43]: — not yet
+        - generic [ref=f8e44]:
+          - heading "What is on offer" [level=3] [ref=f8e45]
+          - generic [ref=f8e46]:
+            - generic [ref=f8e47]:
+              - term [ref=f8e48]: The offer
+              - definition [ref=f8e49]: — not yet
+            - generic [ref=f8e50]:
+              - term [ref=f8e51]: Unit
+              - definition [ref=f8e52]: — not yet
+            - generic [ref=f8e53]:
+              - term [ref=f8e54]: Units vs headcount
+              - definition [ref=f8e55]: — not yet
+        - generic [ref=f8e56]:
+          - heading "Capacity" [level=3] [ref=f8e57]
+          - generic [ref=f8e59]:
+            - term [ref=f8e60]: Capacity
+            - definition [ref=f8e61]: — not yet
+        - generic [ref=f8e62]:
+          - heading "Unit economics" [level=3] [ref=f8e63]
+          - generic [ref=f8e64]: Skipped — this is an errand, not a sale. No unit economics to gather, and none will be invented.
+        - generic [ref=f8e65]:
+          - heading "Hard limits" [level=3] [ref=f8e66]
+          - generic [ref=f8e67]:
+            - generic [ref=f8e68]:
+              - term [ref=f8e69]: Date window
+              - definition [ref=f8e70]: — not yet
+            - generic [ref=f8e71]:
+              - term [ref=f8e72]: Max quantity
+              - definition [ref=f8e73]: — not yet
+        - generic [ref=f8e74]:
+          - heading "Definition of done" [level=3] [ref=f8e75]
+          - generic [ref=f8e76]:
+            - generic [ref=f8e77]:
+              - term [ref=f8e78]: What counts as done
+              - definition [ref=f8e79]: — not yet
+            - generic [ref=f8e80]:
+              - term [ref=f8e81]: Confirmation lands at
+              - definition [ref=f8e82]: — not yet
+      - generic [ref=f8e83]:
+        - paragraph [ref=f8e84]: No escalation. Whatever you set here is the whole mandate. Nobody is asked mid-call — the agent finds a deal inside these limits or ends the call politely.
+        - button "Launch the call" [disabled] [ref=f8e85]
+        - list [ref=f8e86]:
+          - listitem [ref=f8e87]: "· still need: task type"
+          - listitem [ref=f8e88]: "· still need: outcome wanted"
+          - listitem [ref=f8e89]: "· still need: calling on behalf of"
+          - listitem [ref=f8e90]: "· still need: who to call"
+          - listitem [ref=f8e91]: "· still need: the offer"
+          - listitem [ref=f8e92]: "· still need: unit"

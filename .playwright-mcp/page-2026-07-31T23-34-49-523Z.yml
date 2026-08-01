@@ -1,0 +1,23 @@
+- generic [active] [ref=f14e1]:
+  - banner [ref=f14e2]:
+    - heading "Task generator" [level=1] [ref=f14e3]
+    - paragraph [ref=f14e4]: Describe an errand in one sentence. This works out what kind of exchange it is, asks only the questions that task actually needs, and builds a dashboard around the evidence it will produce.
+  - main [ref=f14e5]:
+    - generic [ref=f14e6]:
+      - heading "The goal" [level=2] [ref=f14e7]
+      - textbox "e.g. book a dentist cleaning for my dad sometime in the next three weeks" [ref=f14e8]
+      - button "Read the goal" [ref=f14e10] [cursor=pointer]
+      - generic [ref=f14e11]:
+        - button "book a dentist cleaning for my dad in the next…" [ref=f14e12] [cursor=pointer]
+        - button "order 30 muffins for Monday's standup from the…" [ref=f14e13] [cursor=pointer]
+        - button "sell standing weekday breakfast catering to of…" [ref=f14e14] [cursor=pointer]
+        - button "cancel my gym membership and get the last char…" [ref=f14e15] [cursor=pointer]
+        - button "call three plumbers and find out who can do a …" [ref=f14e16] [cursor=pointer]
+      - generic [ref=f14e17]:
+        - button "Add a question" [ref=f14e18] [cursor=pointer]
+        - button "Re-check" [ref=f14e19] [cursor=pointer]
+        - button "Approve and build the dashboard" [ref=f14e20] [cursor=pointer]
+      - list
+    - generic [ref=f14e21]:
+      - heading "Dashboard" [level=2] [ref=f14e22]
+      - generic [ref=f14e23]: Nothing built yet.

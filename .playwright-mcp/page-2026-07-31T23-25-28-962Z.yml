@@ -1,0 +1,96 @@
+- generic [active] [ref=f5e1]:
+  - banner [ref=f5e2]:
+    - generic [ref=f5e3]:
+      - generic [ref=f5e4]:
+        - heading "Ledgerline — outbound pipeline" [level=1] [ref=f5e5]
+        - generic [ref=f5e6]: a deal is closed when evidence says so, not when the agent does
+      - navigation [ref=f5e7]:
+        - link "Pipeline" [ref=f5e8] [cursor=pointer]:
+          - /url: /
+        - link "Deal economics" [ref=f5e9] [cursor=pointer]:
+          - /url: /economics
+  - generic [ref=f5e10]:
+    - paragraph [ref=f5e11]:
+      - link "← pipeline" [ref=f5e12] [cursor=pointer]:
+        - /url: /
+    - generic [ref=f5e13]:
+      - heading "Northwind Logistics" [level=1] [ref=f5e14]
+      - generic [ref=f5e15]: verified
+      - generic [ref=f5e16]: sample
+    - paragraph [ref=f5e17]:
+      - text: Dana Okafor · Controller · +14155550142 · dana@northwind-logistics.example · 28 seats · stage
+      - strong [ref=f5e18]: Closed won
+    - generic [ref=f5e19]:
+      - generic [ref=f5e20]:
+        - generic [ref=f5e21]:
+          - generic [ref=f5e22]: Close gate
+          - text: closed_won does not lead to closed_won
+        - generic [ref=f5e23]:
+          - heading "Evidence chain" [level=3] [ref=f5e24]
+          - paragraph [ref=f5e25]: "Expected side effect: a countersigned order form, billing record, or written yes from dana@northwind-logistics.example exists and names the seat count and term"
+          - list [ref=f5e26]:
+            - listitem [ref=f5e27]:
+              - generic [ref=f5e28]: agent_assertion · agent-only, cannot verify anything · supports
+              - generic [ref=f5e29]: Dana said yes to 28 seats at $36.80/seat/month, 12 months.
+            - listitem [ref=f5e30]:
+              - generic [ref=f5e31]: inbound_email · independent · supports
+              - generic [ref=f5e32]: Countersigned order form from dana@northwind-logistics.example, 28 seats, 12 months, $14,864.80 TCV.
+        - generic [ref=f5e33]:
+          - heading "Stage history" [level=3] [ref=f5e34]
+          - table [ref=f5e35]:
+            - rowgroup [ref=f5e36]:
+              - row [ref=f5e37]:
+                - columnheader "When" [ref=f5e38]
+                - columnheader "Move" [ref=f5e39]
+                - columnheader "Detail" [ref=f5e40]
+            - rowgroup [ref=f5e41]:
+              - row [ref=f5e42]:
+                - cell "2026-07-31 23:23:38" [ref=f5e43]
+                - cell "- → targeted" [ref=f5e44]
+                - cell "added" [ref=f5e45]
+              - row [ref=f5e46]:
+                - cell "2026-07-31 23:23:38" [ref=f5e47]
+                - cell "targeted → contacted" [ref=f5e48]
+                - cell "SAMPLE DATA - seeded from config/saas.json, not a real prospect" [ref=f5e49]
+              - row [ref=f5e50]:
+                - cell "2026-07-31 23:23:38" [ref=f5e51]
+                - cell "contacted → qualified" [ref=f5e52]
+                - cell "SAMPLE DATA - seeded from config/saas.json, not a real prospect" [ref=f5e53]
+              - row [ref=f5e54]:
+                - cell "2026-07-31 23:23:38" [ref=f5e55]
+                - cell "qualified → demo_booked" [ref=f5e56]
+                - cell "SAMPLE DATA - seeded from config/saas.json, not a real prospect" [ref=f5e57]
+              - row [ref=f5e58]:
+                - cell "2026-07-31 23:23:38" [ref=f5e59]
+                - cell "demo_booked → closed_won" [ref=f5e60]
+                - cell "SAMPLE DATA - seeded from config/saas.json, not a real prospect" [ref=f5e61]
+      - generic [ref=f5e62]:
+        - generic [ref=f5e63]:
+          - heading "Deal economics" [level=3] [ref=f5e64]
+          - generic [ref=f5e65]:
+            - generic [ref=f5e66]: Clears the floor
+            - text: USD 14864.80 over 12 months (28 seats), margin 86.43%, payback 7.54 months
+          - generic [ref=f5e67]:
+            - term [ref=f5e68]: Total contract value
+            - definition [ref=f5e69]: USD 14864.80
+            - term [ref=f5e70]: Effective monthly rate
+            - definition [ref=f5e71]: USD 1238.73
+            - term [ref=f5e72]: Effective rate / seat / month
+            - definition [ref=f5e73]: USD 36.80
+            - term [ref=f5e74]: Effective discount (all rate levers)
+            - definition [ref=f5e75]: 8.00%
+            - term [ref=f5e76]: Cost to serve, full term
+            - definition [ref=f5e77]: USD 2016.00
+            - term [ref=f5e78]: Gross profit over term
+            - definition [ref=f5e79]: USD 12848.80
+            - term [ref=f5e80]: Gross margin
+            - definition [ref=f5e81]: 86.43%
+            - term [ref=f5e82]: CAC payback
+            - definition [ref=f5e83]: 7.54 months
+            - term [ref=f5e84]: Billable months
+            - definition [ref=f5e85]: 12 of 12
+          - paragraph [ref=f5e86]: "Floor: at least USD 11500 of contract value, CAC repaid inside 12 months, gross margin at or above 70%. Either money floor failing rejects the deal on its own - margin is a backstop, not the binding constraint."
+        - generic [ref=f5e87]:
+          - heading "Notes" [level=3] [ref=f5e88]
+          - paragraph [ref=f5e89]: Signed at list minus 8%. Order form came back by email during the call.
+          - paragraph [ref=f5e90]: "Source: Posted in r/Accounting about a 14-day close"

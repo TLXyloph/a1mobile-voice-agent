@@ -1,0 +1,27 @@
+{
+  "_readme": {
+    "what": "MCP client config for the business-owner intake server (src/mcp/intake_server.py). Six tools: start_intake, answer, intake_status, parse_document, save_profile, load_profile.",
+    "voiceos": "VoiceOS's published guideline is a single file run as `python3 /path/to/server.py`, with `mcp.run(transport=\"stdio\")` at the bottom. src/mcp/intake_server.py satisfies both: it bootstraps sys.path so direct execution resolves its `src.` imports, exposes the server as `mcp` (their template's variable name) as well as `server`, and calls run(transport=\"stdio\") explicitly. Verified by a real MCP handshake launched as `python3 <abs path>` from an unrelated working directory. Use voiceos_command below.",
+    "voiceos_command": "/Users/samvrithbandi/Desktop/hackathons/specialized/a1mobile/.venv/bin/python /Users/samvrithbandi/Desktop/hackathons/specialized/a1mobile/src/mcp/intake_server.py",
+    "why_venv_python": "Bare `python3` on this machine is Homebrew 3.14, which has mcp but NOT pandas/openpyxl. The server still starts and five of six tools work, but parse_document on a CSV/XLSX returns a 'pandas is not installed' instruction instead of reading the sheet. Point VoiceOS at .venv/bin/python (3.12) and all six work. If VoiceOS insists on its own interpreter: uv pip install --python <that python> 'mcp[cli]' pandas openpyxl",
+    "sdk_versions": "VoiceOS's template imports FastMCP from mcp.server.fastmcp (SDK 1.x). SDK 2.x renamed that class to MCPServer and removed the old module. intake_server.py tries MCPServer first and falls back to FastMCP, so the same file runs on either. Installed here: mcp 2.0.0.",
+    "install_elsewhere": "For Claude Desktop (~/Library/Application Support/Claude/claude_desktop_config.json) or Claude Code (the repo's .mcp.json), merge the mcpServers block below and restart the host.",
+    "transport": "stdio. For a host that needs a URL instead of a subprocess, the same server speaks Streamable HTTP: .venv/bin/python -c \"from src.mcp.intake_server import server; server.run('streamable-http', host='127.0.0.1', port=8931)\" then expose it with `ngrok http 8931`; the endpoint is /mcp.",
+    "writes": "save_profile writes config/business_profile.json and updates config/.env in place. It never writes or rewrites any key matching API_KEY, SECRET, PASSWORD, TEAM_KEY, TOKEN, PRIVATE_KEY or CREDENTIAL.",
+    "try_it_without_a_host": ".venv/bin/python scripts/intake_playground.py  ->  http://127.0.0.1:8765 (chat UI over the same tools; saves to a sandbox unless you pass --live)",
+    "smoke_test": ".venv/bin/python -m pytest tests/test_intake.py -q -c config/pytest.ini"
+  },
+  "mcpServers": {
+    "a1mobile-intake": {
+      "type": "stdio",
+      "command": "/Users/samvrithbandi/Desktop/hackathons/specialized/a1mobile/.venv/bin/python",
+      "args": [
+        "/Users/samvrithbandi/Desktop/hackathons/specialized/a1mobile/src/mcp/intake_server.py"
+      ],
+      "cwd": "/Users/samvrithbandi/Desktop/hackathons/specialized/a1mobile",
+      "env": {
+        "PYTHONPATH": "/Users/samvrithbandi/Desktop/hackathons/specialized/a1mobile"
+      }
+    }
+  }
+}

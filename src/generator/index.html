@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Task generator</title>
+<style>
+  :root {
+    --paper:#faf8f4; --ink:#1a1815; --muted:#6d675e; --line:#e3ded4;
+    --card:#fff; --accent:#8a5a2b; --accent-soft:#f3ece1;
+    --ok:#2f6b3f; --ok-bg:#e8f1e9; --bad:#9b2c2c; --bad-bg:#f7e6e4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:#141310; --ink:#ece7dd; --muted:#9b958a; --line:#2f2c26;
+      --card:#1c1a16; --accent:#d59b5f; --accent-soft:#26211a;
+      --ok:#7fbc8c; --ok-bg:#16281a; --bad:#e08b81; --bad-bg:#2c1614;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+       font:15px/1.55 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif}
+  header{padding:26px 28px 18px;border-bottom:1px solid var(--line)}
+  header h1{margin:0;font-size:17px;font-weight:600;letter-spacing:-.01em}
+  header p{margin:4px 0 0;font-size:13px;color:var(--muted);max-width:62ch}
+  main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+       gap:0;min-height:calc(100vh - 86px)}
+  .col{padding:24px 28px;min-width:0}
+  .col+.col{border-left:1px solid var(--line)}
+  h2{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+     margin:0 0 10px;font-weight:600}
+  textarea{width:100%;min-height:76px;resize:vertical;padding:12px 13px;
+           border:1px solid var(--line);border-radius:9px;background:var(--card);
+           color:inherit;font:inherit}
+  textarea:focus,input:focus{outline:2px solid var(--accent);outline-offset:-1px}
+  .row{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+  button{font:inherit;font-size:13px;padding:8px 15px;border-radius:8px;
+         border:1px solid var(--line);background:var(--card);color:inherit;cursor:pointer}
+  button:hover:not(:disabled){border-color:var(--accent)}
+  button.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  button.primary:hover:not(:disabled){opacity:.88}
+  button:disabled{opacity:.45;cursor:default}
+  .hint{font-size:12px;color:var(--muted)}
+  .examples{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .examples button{font-size:12px;padding:5px 10px;color:var(--muted)}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 4px}
+  .chip{font-size:11px;letter-spacing:.05em;padding:4px 9px;border-radius:999px;
+        background:var(--accent-soft);color:var(--accent);border:1px solid transparent}
+  .chip.off{background:transparent;color:var(--muted);border-color:var(--line)}
+  .q{border:1px solid var(--line);border-radius:10px;background:var(--card);
+     padding:12px 13px;margin-bottom:9px}
+  .q header{border:0;padding:0;display:flex;justify-content:space-between;
+            align-items:baseline;gap:8px;margin-bottom:6px}
+  .q code{font-size:11px;color:var(--accent);font-weight:600}
+  .q .meta{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .q textarea.ask{width:100%;border:0;background:transparent;color:inherit;
+                  font:inherit;padding:2px 0;resize:none;overflow:hidden;min-height:1.6em}
+  .q .why{font-size:12px;color:var(--muted);margin:5px 0 0}
+  .q .rule{font-size:11px;color:var(--muted);margin-top:4px;font-family:ui-monospace,monospace}
+  .q .actions{display:flex;gap:10px;margin-top:8px;align-items:center}
+  .q label{font-size:11px;color:var(--muted);display:flex;gap:5px;align-items:center}
+  .q button{font-size:11px;padding:3px 9px}
+  .banner{border-radius:9px;padding:10px 12px;font-size:13px;margin:12px 0}
+  .banner.ok{background:var(--ok-bg);color:var(--ok)}
+  .banner.bad{background:var(--bad-bg);color:var(--bad)}
+  .banner ul{margin:6px 0 0;padding-left:18px}
+  iframe{width:100%;height:calc(100vh - 210px);min-height:420px;border:1px solid var(--line);
+         border-radius:10px;background:var(--card)}
+  .empty{border:1px dashed var(--line);border-radius:10px;padding:40px 20px;
+         text-align:center;color:var(--muted);font-size:13px}
+  .repairs{font-size:12px;color:var(--muted);margin-top:10px}
+  .repairs li{margin:2px 0}
+  @media (max-width:900px){main{grid-template-columns:1fr}.col+.col{border-left:0;border-top:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Task generator</h1>
+  <p>Describe an errand in one sentence. This works out what kind of exchange it
+  is, asks only the questions that task actually needs, and builds a dashboard
+  around the evidence it will produce.</p>
+</header>
+
+<main>
+  <div class="col">
+    <h2>The goal</h2>
+    <textarea id="goal" placeholder="e.g. book a dentist cleaning for my dad sometime in the next three weeks"></textarea>
+    <div class="row">
+      <button class="primary" id="go">Read the goal</button>
+      <span class="hint" id="status"></span>
+    </div>
+    <div class="examples" id="examples"></div>
+
+    <div id="profile"></div>
+    <div id="problems"></div>
+    <div id="questions"></div>
+    <div class="row" id="qactions" hidden>
+      <button id="add">Add a question</button>
+      <button id="recheck">Re-check</button>
+      <button class="primary" id="build">Approve and build the dashboard</button>
+    </div>
+    <ul class="repairs" id="repairs"></ul>
+  </div>
+
+  <div class="col">
+    <h2>Dashboard</h2>
+    <div id="preview"><div class="empty">Nothing built yet.</div></div>
+  </div>
+</main>
+
+<script>
+const EXAMPLES = [
+  "book a dentist cleaning for my dad in the next three weeks",
+  "order 30 muffins for Monday's standup from the bakery on Valencia",
+  "sell standing weekday breakfast catering to offices within three miles",
+  "cancel my gym membership and get the last charge refunded",
+  "call three plumbers and find out who can do a Saturday callout"
+];
+
+let STATE = null;
+const $ = (id) => document.getElementById(id);
+
+function status(text, busy) {
+  $("status").textContent = text || "";
+  for (const b of document.querySelectorAll("button")) b.disabled = !!busy;
+}
+
+async function post(url, body) {
+  const r = await fetch(url, {
+    method: "POST",
+    headers: {"content-type": "application/json"},
+    body: JSON.stringify(body)
+  });
+  return {status: r.status, data: await r.json()};
+}
+
+function renderProfile(p) {
+  const chips = [
+    ["exchange: " + p.exchange, true],
+    ["unit economics: " + (p.unit_economics_apply ? "yes" : "no"), p.unit_economics_apply],
+    ["physical items: " + (p.physical_goods ? "yes" : "no"), p.physical_goods],
+    ["closes on: " + p.close_condition.replace(/_/g, " "), true],
+    ["counted in: " + p.units, true]
+  ];
+  $("profile").innerHTML =
+    '<div class="chips">' +
+    chips.map(([t, on]) => `<span class="chip${on ? "" : " off"}">${esc(t)}</span>`).join("") +
+    "</div>";
+}
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"]/g,
+    c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+}
+
+function ruleText(r) {
+  const bits = [r.kind];
+  if (r.min != null) bits.push("min " + r.min);
+  if (r.max != null) bits.push("max " + r.max);
+  if (r.choices && r.choices.length) bits.push(r.choices.join(" / "));
+  return bits.join(" · ") + (r.help ? " — " + r.help : "");
+}
+
+function renderQuestions() {
+  const qs = STATE.questions;
+  $("questions").innerHTML = qs.map((q, i) => `
+    <div class="q">
+      <header>
+        <code>${esc(q.field)}</code>
+        <span class="meta">${q.required ? "required" : "optional"}${q.pricing ? " · pricing" : ""}</span>
+      </header>
+      <textarea class="ask" data-i="${i}" rows="1">${esc(q.ask)}</textarea>
+      ${q.why ? `<p class="why">${esc(q.why)}</p>` : ""}
+      <div class="rule">${esc(ruleText(q.rule || {kind: "text"}))}</div>
+      <div class="actions">
+        <label><input type="checkbox" data-req="${i}" ${q.required ? "checked" : ""}> required</label>
+        <button data-del="${i}">Remove</button>
+      </div>
+    </div>`).join("");
+
+  const grow = (el) => { el.style.height = "auto"; el.style.height = el.scrollHeight + "px"; };
+  for (const t of document.querySelectorAll("textarea.ask")) grow(t);
+
+  $("questions").oninput = (e) => {
+    const i = e.target.dataset.i;
+    if (i != null) { STATE.questions[i].ask = e.target.value; grow(e.target); }
+    const r = e.target.dataset.req;
+    if (r != null) STATE.questions[r].required = e.target.checked;
+  };
+  $("questions").onclick = (e) => {
+    const d = e.target.dataset.del;
+    if (d != null) { STATE.questions.splice(+d, 1); renderQuestions(); }
+  };
+  $("qactions").hidden = qs.length === 0;
+}
+
+function renderProblems(problems) {
+  if (!problems || !problems.length) {
+    $("problems").innerHTML = '<div class="banner ok">Question set is valid.</div>';
+    return;
+  }
+  $("problems").innerHTML =
+    '<div class="banner bad"><b>Not shippable yet</b><ul>' +
+    problems.map(p => `<li>${esc(p)}</li>`).join("") + "</ul></div>";
+}
+
+function renderRepairs() {
+  const r = STATE.repairs || [];
+  $("repairs").innerHTML = (STATE.source ? `<li>source: ${esc(STATE.source)}</li>` : "") +
+    r.map(x => `<li>${esc(x)}</li>`).join("");
+}
+
+function paint() {
+  renderProfile(STATE.profile);
+  renderQuestions();
+  renderProblems(STATE.problems);
+  renderRepairs();
+}
+
+$("go").onclick = async () => {
+  const goal = $("goal").value.trim();
+  if (!goal) return;
+  status("reading the goal…", true);
+  try {
+    const {status: code, data} = await post("/api/plan", {goal});
+    if (code >= 400) { status(data.error || "failed"); return; }
+    STATE = data;
+    paint();
+    status("");
+  } catch (e) { status("could not reach the server"); }
+};
+
+$("recheck").onclick = async () => {
+  status("re-checking…", true);
+  const {data} = await post("/api/questions/validate", STATE);
+  STATE = data; paint(); status("");
+};
+
+$("add").onclick = () => {
+  const field = prompt("Field id (snake_case):");
+  if (!field) return;
+  STATE.questions.push({
+    field: field.toLowerCase().replace(/[^a-z0-9_]+/g, "_"),
+    ask: "", required: true, why: "", rule: {kind: "text"}
+  });
+  renderQuestions();
+};
+
+$("build").onclick = async () => {
+  status("generating the dashboard — headless Claude takes a few minutes…", true);
+  $("preview").innerHTML = '<div class="empty">Generating…</div>';
+  try {
+    const {status: code, data} = await post("/api/dashboard", STATE);
+    if (code === 409) {
+      renderProblems(data.problems);
+      $("preview").innerHTML = '<div class="empty">Fix the question set first.</div>';
+      status(""); return;
+    }
+    if (data.questions) { STATE.questions = data.questions; STATE.repairs = data.repairs; paint(); }
+    $("preview").innerHTML =
+      `<p class="hint">source: <b>${esc(data.source)}</b> · ${data.seconds}s · ` +
+      `${esc(data.path)}${data.problems && data.problems.length ?
+        " · rejected generated output: " + esc(data.problems.join("; ")) : ""}</p>` +
+      ((data.repairs || []).length ?
+        `<p class="hint">put back on submit: ${esc(data.repairs.join("; "))}</p>` : "") +
+      `<iframe src="${esc(data.preview)}?t=${Date.now()}"></iframe>`;
+    status("");
+  } catch (e) { status("generation failed"); }
+};
+
+$("examples").innerHTML = EXAMPLES.map(e =>
+  `<button data-ex="${esc(e)}">${esc(e.slice(0, 46))}…</button>`).join("");
+$("examples").onclick = (e) => {
+  if (e.target.dataset.ex) { $("goal").value = e.target.dataset.ex; $("go").click(); }
+};
+</script>
+</body>
+</html>

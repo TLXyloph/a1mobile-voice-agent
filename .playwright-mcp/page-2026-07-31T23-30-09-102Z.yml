@@ -1,0 +1,98 @@
+- generic [active] [ref=f11e1]:
+  - banner [ref=f11e2]:
+    - generic [ref=f11e3]:
+      - generic [ref=f11e4]:
+        - heading "Ledgerline — outbound pipeline" [level=1] [ref=f11e5]
+        - generic [ref=f11e6]: a deal is closed when evidence says so, not when the agent does
+      - navigation [ref=f11e7]:
+        - link "Pipeline" [ref=f11e8] [cursor=pointer]:
+          - /url: /
+        - link "Deal economics" [ref=f11e9] [cursor=pointer]:
+          - /url: /economics
+  - generic [ref=f11e10]:
+    - paragraph [ref=f11e11]:
+      - link "← pipeline" [ref=f11e12] [cursor=pointer]:
+        - /url: /
+    - generic [ref=f11e13]:
+      - heading "Brightpath Health" [level=1] [ref=f11e14]
+      - generic [ref=f11e15]: no evidence
+      - generic [ref=f11e16]: sample
+    - paragraph [ref=f11e17]:
+      - text: Marcus Lai · VP Finance · +16175550188 · mlai@brightpath.example · 22 seats · stage
+      - strong [ref=f11e18]: Demo booked
+    - generic [ref=f11e19]:
+      - generic [ref=f11e20]:
+        - generic [ref=f11e21]:
+          - generic [ref=f11e22]: Close gate
+          - text: no independent evidence yet - the agent's word is not enough
+        - generic [ref=f11e23]:
+          - heading "Evidence chain" [level=3] [ref=f11e24]
+          - paragraph [ref=f11e25]: "Expected side effect: a countersigned order form, billing record, or written yes from mlai@brightpath.example exists and names the seat count and term"
+          - list [ref=f11e26]:
+            - listitem [ref=f11e27]:
+              - generic [ref=f11e28]:
+                - text: agent_assertion · agent-only, cannot verify anything · supports
+                - generic [ref=f11e29]: about the meeting
+              - generic [ref=f11e30]: Marcus agreed to a Thursday 2pm demo.
+              - generic [ref=f11e31]: Real evidence of something else. Does not bear on whether they signed.
+            - listitem [ref=f11e32]:
+              - generic [ref=f11e33]:
+                - text: provider_api · independent · supports
+                - generic [ref=f11e34]: about the meeting
+              - generic [ref=f11e35]: Google Calendar event 4f2a91 created, both attendees accepted.
+              - generic [ref=f11e36]: Real evidence of something else. Does not bear on whether they signed.
+        - generic [ref=f11e37]:
+          - heading "Stage history" [level=3] [ref=f11e38]
+          - table [ref=f11e39]:
+            - rowgroup [ref=f11e40]:
+              - row [ref=f11e41]:
+                - columnheader "When" [ref=f11e42]
+                - columnheader "Move" [ref=f11e43]
+                - columnheader "Detail" [ref=f11e44]
+            - rowgroup [ref=f11e45]:
+              - row [ref=f11e46]:
+                - cell "2026-07-31 23:29:55" [ref=f11e47]
+                - cell "- → targeted" [ref=f11e48]
+                - cell "added" [ref=f11e49]
+              - row [ref=f11e50]:
+                - cell "2026-07-31 23:29:55" [ref=f11e51]
+                - cell "targeted → contacted" [ref=f11e52]
+                - cell "SAMPLE DATA - seeded from config/saas.json, not a real prospect" [ref=f11e53]
+              - row [ref=f11e54]:
+                - cell "2026-07-31 23:29:55" [ref=f11e55]
+                - cell "contacted → qualified" [ref=f11e56]
+                - cell "SAMPLE DATA - seeded from config/saas.json, not a real prospect" [ref=f11e57]
+              - row [ref=f11e58]:
+                - cell "2026-07-31 23:29:55" [ref=f11e59]
+                - cell "qualified → demo_booked" [ref=f11e60]
+                - cell "SAMPLE DATA - seeded from config/saas.json, not a real prospect" [ref=f11e61]
+      - generic [ref=f11e62]:
+        - generic [ref=f11e63]:
+          - heading "Deal economics" [level=3] [ref=f11e64]
+          - generic [ref=f11e65]:
+            - generic [ref=f11e66]: Clears the floor
+            - text: USD 12004.00 over 12 months (22 seats), margin 86.80%, payback 9.85 months
+          - generic [ref=f11e67]:
+            - term [ref=f11e68]: Total contract value
+            - definition [ref=f11e69]: USD 12004.00
+            - term [ref=f11e70]: Effective monthly rate
+            - definition [ref=f11e71]: USD 1000.33
+            - term [ref=f11e72]: Effective rate / seat / month
+            - definition [ref=f11e73]: USD 36.00
+            - term [ref=f11e74]: Effective discount (all rate levers)
+            - definition [ref=f11e75]: 10.00%
+            - term [ref=f11e76]: Cost to serve, full term
+            - definition [ref=f11e77]: USD 1584.00
+            - term [ref=f11e78]: Gross profit over term
+            - definition [ref=f11e79]: USD 10420.00
+            - term [ref=f11e80]: Gross margin
+            - definition [ref=f11e81]: 86.80%
+            - term [ref=f11e82]: CAC payback
+            - definition [ref=f11e83]: 9.85 months
+            - term [ref=f11e84]: Billable months
+            - definition [ref=f11e85]: 12 of 12
+          - paragraph [ref=f11e86]: "Floor: at least USD 11500 of contract value, CAC repaid inside 12 months, gross margin at or above 70%. Either money floor failing rejects the deal on its own - margin is a backstop, not the binding constraint."
+        - generic [ref=f11e87]:
+          - heading "Notes" [level=3] [ref=f11e88]
+          - paragraph [ref=f11e89]: Demo on the calendar. Pushed hard on price; agent held at 10% and did not stack free months.
+          - paragraph [ref=f11e90]: "Source: Hiring two staff accountants, JD mentions manual reconciliation"

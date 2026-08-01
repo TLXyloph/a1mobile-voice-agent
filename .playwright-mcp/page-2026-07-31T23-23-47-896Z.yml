@@ -1,0 +1,100 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - generic [ref=f1e4]:
+        - heading "Ledgerline — outbound pipeline" [level=1] [ref=f1e5]
+        - generic [ref=f1e6]: a deal is closed when evidence says so, not when the agent does
+      - navigation [ref=f1e7]:
+        - link "Pipeline" [ref=f1e8] [cursor=pointer]:
+          - /url: /
+        - link "Deal economics" [ref=f1e9] [cursor=pointer]:
+          - /url: /economics
+  - generic [ref=f1e10]:
+    - generic [ref=f1e11]:
+      - strong [ref=f1e12]: Sample data.
+      - text: Prospects marked
+      - emphasis [ref=f1e13]: sample
+      - text: are seeded from
+      - code [ref=f1e14]: config/saas.json
+      - text: so the board is not empty. They were walked through the same transitions as a real prospect, which is why the closed-won row has an independent artifact behind it.
+    - generic [ref=f1e15]:
+      - generic [ref=f1e16]:
+        - heading "Targeted 2" [level=2] [ref=f1e17]:
+          - text: Targeted
+          - generic [ref=f1e18]: "2"
+        - link "Arbor Dental Group Renee Castellanos · 11 seats unverified no terms" [ref=f1e19] [cursor=pointer]:
+          - /url: /prospect/sample_arbor
+          - generic [ref=f1e20]: Arbor Dental Group
+          - generic [ref=f1e21]: Renee Castellanos · 11 seats
+          - generic [ref=f1e22]:
+            - generic [ref=f1e23]: unverified
+            - generic [ref=f1e24]: no terms
+        - link "Summit Freight Jorge Medina · 40 seats unverified no terms" [ref=f1e25] [cursor=pointer]:
+          - /url: /prospect/sample_summit
+          - generic [ref=f1e26]: Summit Freight
+          - generic [ref=f1e27]: Jorge Medina · 40 seats
+          - generic [ref=f1e28]:
+            - generic [ref=f1e29]: unverified
+            - generic [ref=f1e30]: no terms
+      - generic [ref=f1e31]:
+        - heading "Contacted 1" [level=2] [ref=f1e32]:
+          - text: Contacted
+          - generic [ref=f1e33]: "1"
+        - link "Tidewater Foods Alan Wu · 14 seats unverified USD 9220.00" [ref=f1e34] [cursor=pointer]:
+          - /url: /prospect/sample_tidewater
+          - generic [ref=f1e35]: Tidewater Foods
+          - generic [ref=f1e36]: Alan Wu · 14 seats
+          - generic [ref=f1e37]:
+            - generic [ref=f1e38]: unverified
+            - generic [ref=f1e39]: USD 9220.00
+      - generic [ref=f1e40]:
+        - heading "Qualified 2" [level=2] [ref=f1e41]:
+          - text: Qualified
+          - generic [ref=f1e42]: "2"
+        - link "Kestrel Manufacturing Priya Raman · 35 seats unverified USD 17620.00" [ref=f1e43] [cursor=pointer]:
+          - /url: /prospect/sample_kestrel
+          - generic [ref=f1e44]: Kestrel Manufacturing
+          - generic [ref=f1e45]: Priya Raman · 35 seats
+          - generic [ref=f1e46]:
+            - generic [ref=f1e47]: unverified
+            - generic [ref=f1e48]: USD 17620.00
+        - link "Lattice Biosciences Wei Chen · 18 seats unverified USD 10024.00" [ref=f1e49] [cursor=pointer]:
+          - /url: /prospect/sample_lattice
+          - generic [ref=f1e50]: Lattice Biosciences
+          - generic [ref=f1e51]: Wei Chen · 18 seats
+          - generic [ref=f1e52]:
+            - generic [ref=f1e53]: unverified
+            - generic [ref=f1e54]: USD 10024.00
+      - generic [ref=f1e55]:
+        - heading "Demo booked 1" [level=2] [ref=f1e56]:
+          - text: Demo booked
+          - generic [ref=f1e57]: "1"
+        - link "Brightpath Health Marcus Lai · 22 seats verified USD 12004.00" [ref=f1e58] [cursor=pointer]:
+          - /url: /prospect/sample_brightpath
+          - generic [ref=f1e59]: Brightpath Health
+          - generic [ref=f1e60]: Marcus Lai · 22 seats
+          - generic [ref=f1e61]:
+            - generic [ref=f1e62]: verified
+            - generic [ref=f1e63]: USD 12004.00
+      - generic [ref=f1e64]:
+        - heading "Closed won 1" [level=2] [ref=f1e65]:
+          - text: Closed won
+          - generic [ref=f1e66]: "1"
+        - link "Northwind Logistics Dana Okafor · 28 seats verified USD 14864.80" [ref=f1e67] [cursor=pointer]:
+          - /url: /prospect/sample_northwind
+          - generic [ref=f1e68]: Northwind Logistics
+          - generic [ref=f1e69]: Dana Okafor · 28 seats
+          - generic [ref=f1e70]:
+            - generic [ref=f1e71]: verified
+            - generic [ref=f1e72]: USD 14864.80
+      - generic [ref=f1e73]:
+        - heading "Closed lost 1" [level=2] [ref=f1e74]:
+          - text: Closed lost
+          - generic [ref=f1e75]: "1"
+        - link "Halcyon Media Sam Ortiz · 12 seats unverified USD 3456.00" [ref=f1e76] [cursor=pointer]:
+          - /url: /prospect/sample_halcyon
+          - generic [ref=f1e77]: Halcyon Media
+          - generic [ref=f1e78]: Sam Ortiz · 12 seats
+          - generic [ref=f1e79]:
+            - generic [ref=f1e80]: unverified
+            - generic [ref=f1e81]: USD 3456.00

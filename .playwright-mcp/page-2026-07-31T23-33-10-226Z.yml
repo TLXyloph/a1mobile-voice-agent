@@ -1,0 +1,194 @@
+- generic [active] [ref=f13e1]:
+  - banner [ref=f13e2]:
+    - heading "Task generator" [level=1] [ref=f13e3]
+    - paragraph [ref=f13e4]: Describe an errand in one sentence. This works out what kind of exchange it is, asks only the questions that task actually needs, and builds a dashboard around the evidence it will produce.
+  - main [ref=f13e5]:
+    - generic [ref=f13e6]:
+      - heading "The goal" [level=2] [ref=f13e7]
+      - textbox "e.g. book a dentist cleaning for my dad sometime in the next three weeks" [ref=f13e8]: order 30 muffins for Monday's standup from the bakery on Valencia
+      - button "Read the goal" [ref=f13e10] [cursor=pointer]
+      - generic [ref=f13e11]:
+        - button "book a dentist cleaning for my dad in the next…" [ref=f13e12] [cursor=pointer]
+        - button "order 30 muffins for Monday's standup from the…" [ref=f13e13] [cursor=pointer]
+        - button "sell standing weekday breakfast catering to of…" [ref=f13e14] [cursor=pointer]
+        - button "cancel my gym membership and get the last char…" [ref=f13e15] [cursor=pointer]
+        - button "call three plumbers and find out who can do a …" [ref=f13e16] [cursor=pointer]
+      - generic [ref=f13e26]:
+        - generic [ref=f13e27]: "exchange: purchase"
+        - generic [ref=f13e28]: "unit economics: no"
+        - generic [ref=f13e29]: "physical items: yes"
+        - generic [ref=f13e30]: "closes on: written confirmation"
+        - generic [ref=f13e31]: "counted in: muffins"
+      - generic [ref=f13e32]: Question set is valid.
+      - generic [ref=f13e34]:
+        - generic [ref=f13e35]:
+          - generic [ref=f13e36]:
+            - code [ref=f13e37]: units_basis
+            - generic [ref=f13e38]: required
+          - textbox [ref=f13e39]: How many, and is that a count of ITEMS or a count of PEOPLE? If you are telling me people, say how many items each person gets.
+          - paragraph [ref=f13e40]: A headcount is not an item count. Reading 'thirty' as thirty items when it meant thirty people has already mispriced a real order by $311.
+          - generic [ref=f13e41]: text · min 4 — Say 'items' or 'people'. If people, give the items-per-person number.
+          - generic [ref=f13e42]:
+            - generic [ref=f13e43]:
+              - checkbox "required" [checked] [ref=f13e44]
+              - text: required
+            - button "Remove" [ref=f13e45] [cursor=pointer]
+        - generic [ref=f13e46]:
+          - generic [ref=f13e47]:
+            - code [ref=f13e48]: muffin_flavors_and_counts
+            - generic [ref=f13e49]: required
+          - textbox [ref=f13e50]: What muffin flavors do you want, and how many of each?
+          - paragraph [ref=f13e51]: The bakery needs exact product breakdown to place the order.
+          - generic [ref=f13e52]: "text — List flavors and quantities, for example: 10 blueberry, 10 chocolate chip, 10 banana nut."
+          - generic [ref=f13e53]:
+            - generic [ref=f13e54]:
+              - checkbox "required" [checked] [ref=f13e55]
+              - text: required
+            - button "Remove" [ref=f13e56] [cursor=pointer]
+        - generic [ref=f13e57]:
+          - generic [ref=f13e58]:
+            - code [ref=f13e59]: pickup_or_delivery
+            - generic [ref=f13e60]: required
+          - textbox [ref=f13e61]: Should the bakery have these ready for pickup or deliver them?
+          - paragraph [ref=f13e62]: This changes how the order is fulfilled.
+          - generic [ref=f13e63]: choice · pickup / delivery — Choose pickup or delivery.
+          - generic [ref=f13e64]:
+            - generic [ref=f13e65]:
+              - checkbox "required" [checked] [ref=f13e66]
+              - text: required
+            - button "Remove" [ref=f13e67] [cursor=pointer]
+        - generic [ref=f13e68]:
+          - generic [ref=f13e69]:
+            - code [ref=f13e70]: order_time_for_monday
+            - generic [ref=f13e71]: required
+          - textbox [ref=f13e72]: What time on Monday do you need the muffins ready?
+          - paragraph [ref=f13e73]: The bakery needs a deadline for preparation and handoff.
+          - generic [ref=f13e74]: text — Give the time in local time, like 9:00 AM.
+          - generic [ref=f13e75]:
+            - generic [ref=f13e76]:
+              - checkbox "required" [checked] [ref=f13e77]
+              - text: required
+            - button "Remove" [ref=f13e78] [cursor=pointer]
+        - generic [ref=f13e79]:
+          - generic [ref=f13e80]:
+            - code [ref=f13e81]: pickup_or_delivery_address
+            - generic [ref=f13e82]: optional
+          - textbox [ref=f13e83]: If this is delivery, what address should they send it to?
+          - paragraph [ref=f13e84]: Needed only if the bakery is delivering.
+          - generic [ref=f13e85]: text — Give the full delivery address, including any suite or room number.
+          - generic [ref=f13e86]:
+            - generic [ref=f13e87]:
+              - checkbox "required" [ref=f13e88]
+              - text: required
+            - button "Remove" [ref=f13e89] [cursor=pointer]
+        - generic [ref=f13e90]:
+          - generic [ref=f13e91]:
+            - code [ref=f13e92]: contact_name_and_phone
+            - generic [ref=f13e93]: required
+          - textbox [ref=f13e94]: Who should the bakery contact if they have a question, and what phone number should they use?
+          - paragraph [ref=f13e95]: The bakery may need a callback number to complete the order.
+          - generic [ref=f13e96]: phone — Provide the best phone number for order questions.
+          - generic [ref=f13e97]:
+            - generic [ref=f13e98]:
+              - checkbox "required" [checked] [ref=f13e99]
+              - text: required
+            - button "Remove" [ref=f13e100] [cursor=pointer]
+        - generic [ref=f13e101]:
+          - generic [ref=f13e102]:
+            - code [ref=f13e103]: written_confirmation_destination
+            - generic [ref=f13e104]: required
+          - textbox [ref=f13e105]: Should written confirmation be sent by text or email, and what address or number should it go to?
+          - paragraph [ref=f13e106]: Needed as proof that the order was placed.
+          - generic [ref=f13e107]: text — Provide either an email address or a phone number that can receive a text.
+          - generic [ref=f13e108]:
+            - generic [ref=f13e109]:
+              - checkbox "required" [checked] [ref=f13e110]
+              - text: required
+            - button "Remove" [ref=f13e111] [cursor=pointer]
+        - generic [ref=f13e112]:
+          - generic [ref=f13e113]:
+            - code [ref=f13e114]: callee
+            - generic [ref=f13e115]: required
+          - textbox [ref=f13e116]: Who should we call? Give the business or person's name, and the number if you have it.
+          - paragraph [ref=f13e117]: Nothing happens without somebody to dial.
+          - generic [ref=f13e118]: text · min 3 — A name we could look up, not 'the dentist'.
+          - generic [ref=f13e119]:
+            - generic [ref=f13e120]:
+              - checkbox "required" [checked] [ref=f13e121]
+              - text: required
+            - button "Remove" [ref=f13e122] [cursor=pointer]
+        - generic [ref=f13e123]:
+          - generic [ref=f13e124]:
+            - code [ref=f13e125]: done_definition
+            - generic [ref=f13e126]: required
+          - textbox [ref=f13e127]: What has to be true afterwards for this to count as done? Describe something you could check yourself.
+          - paragraph [ref=f13e128]: This becomes the claim on the receipt. If it is not checkable, nothing can verify it.
+          - generic [ref=f13e129]: text · min 10 — A checkable sentence, not 'it went well'.
+          - generic [ref=f13e130]:
+            - generic [ref=f13e131]:
+              - checkbox "required" [checked] [ref=f13e132]
+              - text: required
+            - button "Remove" [ref=f13e133] [cursor=pointer]
+        - generic [ref=f13e134]:
+          - generic [ref=f13e135]:
+            - code [ref=f13e136]: confirm_to
+            - generic [ref=f13e137]: required
+          - textbox [ref=f13e138]: Where should they send written confirmation - a mobile number for a text, or an email address?
+          - paragraph [ref=f13e139]: A reply we receive is the only thing that turns 'they said yes' into proof.
+          - generic [ref=f13e140]: text · min 5 — A number or an email we control.
+          - generic [ref=f13e141]:
+            - generic [ref=f13e142]:
+              - checkbox "required" [checked] [ref=f13e143]
+              - text: required
+            - button "Remove" [ref=f13e144] [cursor=pointer]
+        - generic [ref=f13e145]:
+          - generic [ref=f13e146]:
+            - code [ref=f13e147]: deadline
+            - generic [ref=f13e148]: required
+          - textbox [ref=f13e149]: What is the last date this is still useful? (YYYY-MM-DD)
+          - paragraph [ref=f13e150]: After this, calling is worse than not calling.
+          - generic [ref=f13e151]: date — A calendar date.
+          - generic [ref=f13e152]:
+            - generic [ref=f13e153]:
+              - checkbox "required" [checked] [ref=f13e154]
+              - text: required
+            - button "Remove" [ref=f13e155] [cursor=pointer]
+        - generic [ref=f13e156]:
+          - generic [ref=f13e157]:
+            - code [ref=f13e158]: quantity
+            - generic [ref=f13e159]: required
+          - textbox [ref=f13e160]: How many are you after, as a plain number?
+          - paragraph [ref=f13e161]: Sizes the order and the capacity hold.
+          - generic [ref=f13e162]: integer · min 1 — A whole number, at least 1.
+          - generic [ref=f13e163]:
+            - generic [ref=f13e164]:
+              - checkbox "required" [checked] [ref=f13e165]
+              - text: required
+            - button "Remove" [ref=f13e166] [cursor=pointer]
+        - generic [ref=f13e167]:
+          - generic [ref=f13e168]:
+            - code [ref=f13e169]: spend_ceiling
+            - generic [ref=f13e170]: required
+          - textbox [ref=f13e171]: What is the most you are willing to spend in total?
+          - paragraph [ref=f13e172]: The agent walks away above this rather than guessing what you'd tolerate.
+          - generic [ref=f13e173]: money · min 0 — A total, not a per-item price.
+          - generic [ref=f13e174]:
+            - generic [ref=f13e175]:
+              - checkbox "required" [checked] [ref=f13e176]
+              - text: required
+            - button "Remove" [ref=f13e177] [cursor=pointer]
+      - generic [ref=f13e17]:
+        - button "Add a question" [ref=f13e18] [cursor=pointer]
+        - button "Re-check" [ref=f13e19] [cursor=pointer]
+        - button "Approve and build the dashboard" [ref=f13e20] [cursor=pointer]
+      - list [ref=f13e178]:
+        - listitem [ref=f13e179]: "source: model+repaired"
+        - listitem [ref=f13e180]: injected required field callee
+        - listitem [ref=f13e181]: injected required field done_definition
+        - listitem [ref=f13e182]: injected required field confirm_to
+        - listitem [ref=f13e183]: injected required field deadline
+        - listitem [ref=f13e184]: injected required field quantity
+        - listitem [ref=f13e185]: injected required field spend_ceiling
+    - generic [ref=f13e21]:
+      - heading "Dashboard" [level=2] [ref=f13e22]
+      - generic [ref=f13e23]: Nothing built yet.

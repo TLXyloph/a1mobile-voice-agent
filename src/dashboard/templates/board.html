@@ -1,0 +1,357 @@
+{#
+  The whole live region. Rendered inline by index.html and re-fetched whole by
+  the poller, so there is one description of the board and no client-side
+  template to drift from it. Nothing time-varying is printed here except via
+  data attributes — the elapsed clocks tick in JS from an epoch, which keeps
+  the fragment byte-identical between polls when nothing has actually changed
+  and lets the poller skip the DOM write (and so keep keyboard focus).
+#}
+
+<!-- 01 ─ APPROVAL RAIL ────────────────────────────────────────────────── -->
+<section class="sec sec-rail" id="rail" aria-labelledby="h-rail">
+  <h2 class="sec-h" id="h-rail">
+    <span class="sec-n">01</span>
+    <span class="sec-t">APPROVAL RAIL</span>
+    <span class="sec-rule"></span>
+    {% if counts.pending %}
+      <span class="sec-x sec-x-hot">{{ counts.pending }} WAITING ON YOU</span>
+    {% else %}
+      <span class="sec-x">CLEAR</span>
+    {% endif %}
+  </h2>
+
+  <div class="rail-bar" aria-hidden="true"></div>
+
+  <div class="rail-slots" aria-live="assertive" aria-atomic="false">
+  {% for a in pending %}
+    <article class="ticket" data-fk-scope="{{ a.id }}">
+      <div class="ticket-clip" aria-hidden="true"></div>
+      <div class="ticket-inner">
+        <div class="ticket-top">
+          <span class="ticket-flag">OPERATOR DECISION REQUIRED</span>
+          <span class="ticket-wait tnum" data-elapsed="{{ a.created_epoch }}">{{ a.waiting }}</span>
+        </div>
+
+        <p class="ticket-ask">{{ a.ask }}</p>
+
+        <dl class="ticket-facts">
+          <div><dt>WHO</dt><dd>{{ a.business }}</dd></div>
+          <div><dt>CAMPAIGN</dt><dd>{{ a.campaign_name }}</dd></div>
+          <div><dt>AT STAKE</dt><dd>{{ a.at_stake }}</dd></div>
+        </dl>
+
+        <p class="ticket-why"><span class="why-k">WHY IT STOPPED:</span> {{ a.reason }}</p>
+
+        <ol class="ticket-opts">
+          {% for opt in a.options %}<li>{{ opt }}</li>{% endfor %}
+        </ol>
+
+        <form class="ticket-act" method="post" action="/approvals/{{ a.id }}/decide">
+          <button class="btn btn-yes" type="submit" name="decision" value="approve"
+                  data-fk="yes-{{ a.id }}">APPROVE</button>
+          <button class="btn btn-no" type="submit" name="decision" value="deny"
+                  data-fk="no-{{ a.id }}">DENY</button>
+          <span class="btn-note">No answer is a denial. The agent is holding the line.</span>
+        </form>
+      </div>
+    </article>
+  {% else %}
+    <div class="rail-empty">
+      <p class="rail-empty-h">RAIL CLEAR</p>
+      <p class="rail-empty-b">The agent is operating inside the envelope and deciding for itself.
+        Anything it is not authorised to agree to — a price under the floor, a quantity over
+        capacity, a date outside the window — stops the call and lands here.</p>
+      <p class="rail-empty-c">Two buttons. Nothing else on this board is ever more urgent.</p>
+    </div>
+  {% endfor %}
+  </div>
+
+  {% if settled %}
+  <ul class="settled">
+    {% for a in settled %}
+    <li class="settled-row settled-{{ a.decision }}">
+      <span class="settled-mark">{{ 'APPROVED' if a.approved else 'DENIED' }}</span>
+      <span class="settled-ask">{{ a.ask }}</span>
+      <span class="settled-who">{{ a.business }}</span>
+      <span class="settled-t tnum">{{ a.waiting }} to answer</span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</section>
+
+
+<div class="band">
+
+<!-- 02 ─ LIVE CALL ────────────────────────────────────────────────────── -->
+<section class="sec sec-live" aria-labelledby="h-live">
+  <h2 class="sec-h" id="h-live">
+    <span class="sec-n">02</span>
+    <span class="sec-t">ON THE LINE</span>
+    <span class="sec-rule"></span>
+    <span class="sec-x">{{ counts.calls }} ACTIVE</span>
+  </h2>
+
+  {% if calls %}
+    {% set primary = calls[0] %}
+    <article class="live-card {{ 'live-escalating' if primary.tactic.value == 'escalate_to_operator' else '' }}">
+      <div class="live-status">
+        <i class="onair" aria-hidden="true"></i>
+        <span>{{ primary.status }}</span>
+      </div>
+      <h3 class="live-who">{{ primary.business }}</h3>
+      <p class="live-sub tnum">{{ primary.phone }}</p>
+      <p class="live-camp">{{ primary.campaign_name }}</p>
+
+      <div class="live-nums">
+        <div class="num">
+          <span class="num-k">ELAPSED</span>
+          <span class="num-v tnum" data-elapsed="{{ primary.started_epoch }}">{{ primary.elapsed }}</span>
+        </div>
+        <div class="num">
+          <span class="num-k">ON THE TABLE</span>
+          {% if primary.quote is not none %}
+            <span class="num-v tnum">{{ "{:,.2f}".format(primary.quote) }}</span>
+            <span class="num-u">USD{% if primary.qty %} · {{ primary.qty }} {{ primary.unit }}{% endif %}</span>
+          {% else %}
+            <span class="num-v num-v-none">—</span>
+            <span class="num-u">no number quoted yet</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="tactic">
+        <span class="tactic-k">TACTIC</span>
+        <span class="tactic-v">{{ primary.tactic.value | replace('_',' ') | upper }}</span>
+        <span class="tactic-g">{{ primary.tactic_gloss }}</span>
+      </div>
+
+      {% if primary.transcript_tail %}
+      <ul class="tail">
+        {% for line in primary.transcript_tail[-2:] %}<li>{{ line }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+    </article>
+
+    {% if calls|length > 1 %}
+    <ul class="live-more">
+      {% for c in calls[1:] %}
+      <li>
+        <span class="lm-status">{{ c.status }}</span>
+        <span class="lm-who">{{ c.business }}</span>
+        <span class="lm-t tnum" data-elapsed="{{ c.started_epoch }}">{{ c.elapsed }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  {% else %}
+    <div class="empty">
+      <p class="empty-h">LINE IS OPEN</p>
+      <p class="empty-b">No call in progress. Start the outbound loop and this panel fills with
+        who is being called, what is on the table, and which tactic the agent is running.</p>
+      <code class="empty-cmd">uv run src/agents/sales_agent.py dev</code>
+    </div>
+  {% endif %}
+
+  <dl class="tally">
+    <div><dt>ON THE LINE</dt><dd class="tnum">{{ counts.calls }}</dd></div>
+    <div><dt>ANSWERED</dt><dd class="tnum">{{ counts.answered }}</dd></div>
+    <div><dt>PRINTED</dt><dd class="tnum">{{ counts.receipts }}</dd></div>
+    <div><dt>PROVEN</dt><dd class="tnum tally-v">{{ counts.verified }}</dd></div>
+    <div><dt>DISPROVEN</dt><dd class="tnum tally-c">{{ counts.contradicted }}</dd></div>
+  </dl>
+  <p class="tally-note">PROVEN counts claims an independent channel confirmed — never calls the agent felt went well.</p>
+</section>
+
+<!-- 03 ─ CAPACITY ─────────────────────────────────────────────────────── -->
+<section class="sec sec-cap" aria-labelledby="h-cap">
+  <h2 class="sec-h" id="h-cap">
+    <span class="sec-n">03</span>
+    <span class="sec-t">CAPACITY LEDGER</span>
+    <span class="sec-rule"></span>
+    <span class="sec-x">{{ ledgers|length }} CAMPAIGN{{ '' if ledgers|length == 1 else 'S' }}</span>
+  </h2>
+
+  {% if ledgers %}
+  <ul class="cap-list">
+    {% for lc in ledgers %}
+    {% set s = lc.snapshot %}
+    <li class="cap">
+      <p class="cap-name">{{ lc.campaign_name }}</p>
+      <p class="cap-unit">{{ s.unit }} · {{ s.total }} TOTAL</p>
+      <div class="cap-bar" role="img"
+           aria-label="{{ s.committed }} committed, {{ s.held }} held, {{ s.available }} available of {{ s.total }} {{ s.unit }}">
+        {% for seg in lc.bars() %}
+          {% if seg.pct > 0 %}<span class="seg seg-{{ seg.key }}" style="width:{{ '%.4f'|format(seg.pct) }}%"></span>{% endif %}
+        {% endfor %}
+      </div>
+      <dl class="cap-nums">
+        <div class="cn cn-available"><dt>AVAILABLE</dt><dd class="tnum">{{ s.available }}</dd></div>
+        <div class="cn cn-held"><dt>HELD</dt><dd class="tnum">{{ s.held }}</dd></div>
+        <div class="cn cn-committed"><dt>COMMITTED</dt><dd class="tnum">{{ s.committed }}</dd></div>
+      </dl>
+      {% if s.open_holds %}
+      <p class="cap-holds">{{ s.open_holds|length }} open hold{{ '' if s.open_holds|length == 1 else 's' }} — expires unless an independent confirmation commits it</p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <div class="empty">
+    <p class="empty-h">NO LEDGER REGISTERED</p>
+    <p class="empty-b">Capacity appears here the moment a campaign registers one. Until then the
+      agent cannot quote a quantity at all — there is nothing for it to reserve against.</p>
+  </div>
+  {% endif %}
+</section>
+
+<!-- 04 ─ LEAD SHEET ───────────────────────────────────────────────────── -->
+<section class="sec sec-leads" aria-labelledby="h-leads">
+  <h2 class="sec-h" id="h-leads">
+    <span class="sec-n">04</span>
+    <span class="sec-t">LEAD SHEET</span>
+    <span class="sec-rule"></span>
+    <span class="sec-x">{{ counts.leads }} QUALIFIED</span>
+  </h2>
+
+  {% if leads %}
+  <ol class="leads">
+    {% for lead in leads %}
+    <li class="lead">
+      <div class="lead-top">
+        <span class="lead-name">{{ lead.business_name }}</span>
+        <span class="lead-score tnum" aria-label="score {{ '%.2f'|format(lead.score) }}">{{ '%.2f'|format(lead.score) }}</span>
+      </div>
+      <div class="lead-meter" aria-hidden="true">
+        {% for i in range(10) %}<i class="{{ 'on' if (i + 1) <= (lead.score * 10)|round(0,'floor') else '' }}"></i>{% endfor %}
+      </div>
+      <p class="lead-why">{{ lead.qualification_reason }}</p>
+      <p class="lead-meta tnum">{{ lead.phone or 'NO PHONE' }}{% if lead.website %} · {{ lead.website.split('//')[-1] }}{% endif %}</p>
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <div class="empty">
+    <p class="empty-h">NO LEADS SCREENED</p>
+    <p class="empty-b">Discovery is biased to exclude: an unreachable site is not a lead, and a
+      site that already works disqualifies. Run it and the survivors land here with the sentence
+      the agent will have to defend on the call.</p>
+    <code class="empty-cmd">uv run scripts/discover.py --campaign freelance_webdev</code>
+  </div>
+  {% endif %}
+</section>
+
+</div><!-- /band -->
+
+
+<!-- 05 ─ RECEIPTS ─────────────────────────────────────────────────────── -->
+<section class="sec sec-receipts" aria-labelledby="h-rec">
+  <h2 class="sec-h" id="h-rec">
+    <span class="sec-n">05</span>
+    <span class="sec-t">PRINTED RECEIPTS</span>
+    <span class="sec-rule"></span>
+    <span class="sec-x">
+      {{ counts.receipts }} PRINTED · {{ counts.verified }} VERIFIED{% if counts.contradicted %} · {{ counts.contradicted }} CONTRADICTED{% endif %}
+    </span>
+  </h2>
+
+  {% if receipts %}
+  <ul class="rec-rail">
+    {% for card in receipts %}
+    {% set r = card.receipt %}
+    <li class="slot slot-{{ loop.index0 % 4 }}">
+      <article class="receipt" aria-label="Receipt for {{ card.counterparty }} — verdict {{ card.stamp }}">
+        <div class="r-pad">
+          <p class="r-brand">GOLDEN CRUMB</p>
+          <p class="r-kind">OUTBOUND CALL RECEIPT</p>
+          <div class="r-perf"></div>
+
+          <dl class="r-kv">
+            <div><dt>NO</dt><dd>{{ r.id }}</dd></div>
+            <div><dt>PARTY</dt><dd>{{ card.counterparty }}</dd></div>
+            <div><dt>LINE</dt><dd>{{ card.phone or 'n/a' }}</dd></div>
+            <div><dt>CAMP</dt><dd>{{ card.campaign_name }}</dd></div>
+            <div><dt>OPEN</dt><dd>{{ card.opened_at }}Z</dd></div>
+            <div><dt>CLOSE</dt><dd>{{ card.closed_at }}Z · {{ card.duration }}</dd></div>
+          </dl>
+
+          <div class="r-perf"></div>
+          <p class="r-task">{{ r.task }}</p>
+          <div class="r-perf"></div>
+
+          {% for c in r.claims %}
+          <div class="r-claim">
+            <p class="r-claim-h"><span class="r-claim-n">{{ loop.index }}</span>{{ c.description }}</p>
+            <p class="r-exp">EXPECT · {{ c.expected_side_effect }}</p>
+            {% for e in c.evidence %}
+            <p class="r-ev {{ 'ev-ok' if e.supports else 'ev-bad' }} {{ 'ev-indep' if e.is_independent else 'ev-agent' }}">
+              <span class="r-ev-sign">{{ '+' if e.supports else '!' }}</span>
+              <span class="r-ev-ch">{{ e.channel.value }}</span>
+              <span class="r-ev-tag">{{ 'INDEPENDENT' if e.is_independent else 'AGENT ONLY — CANNOT VERIFY' }}</span>
+              <span class="r-ev-s">{{ e.summary }}</span>
+              {% if e.content_hash %}<span class="r-ev-h">sha {{ e.content_hash }}</span>{% endif %}
+            </p>
+            {% endfor %}
+          </div>
+          {% else %}
+          <p class="r-exp">NO CLAIMS FILED ON THIS CALL.</p>
+          {% endfor %}
+
+          <div class="r-perf r-perf-heavy"></div>
+          {# The stamp is positioned against this block, not the whole
+             receipt, so it lands in the same place on a one-claim receipt and
+             a five-claim one. #}
+          <div class="r-verdict">
+            <p class="r-tot">
+              <span>{{ r.claims|length }} CLAIM{{ '' if r.claims|length == 1 else 'S' }}</span>
+              <span>{{ r.verified|length }} VER · {{ r.unverified|length }} UNC · {{ r.contradicted|length }} CON</span>
+            </p>
+            <p class="r-headline">{{ r.headline }}</p>
+                <span class="stamp stamp-{{ card.stamp_class }}" aria-hidden="true">{{ card.stamp }}</span>
+          </div>
+          <div class="r-barcode" aria-hidden="true"></div>
+          <p class="r-foot">STAMPED BY EVIDENCE, NOT BY THE AGENT</p>
+        </div>
+      </article>
+    </li>
+    {% endfor %}
+    <li class="slot slot-ghost" aria-hidden="true">
+      <div class="ghost">NEXT CALL<br>PRINTS HERE</div>
+    </li>
+  </ul>
+  {% else %}
+  <div class="rec-rail">
+    <div class="slot">
+      <div class="receipt receipt-blank" role="note">
+        <div class="r-pad">
+          <p class="r-brand">GOLDEN CRUMB</p>
+          <p class="r-kind">OUTBOUND CALL RECEIPT</p>
+          <div class="r-perf"></div>
+          <p class="empty-h">NOTHING PRINTED YET</p>
+          <p class="empty-b">Every finished call prints here — the claim it made, the side effect
+            that would prove it, and every piece of evidence for or against.</p>
+          <p class="empty-b">The stamp is set by an independent channel or it stays faint. There is
+            no code path by which the agent's own account of the call promotes a claim.</p>
+          <div class="r-perf"></div>
+          <div class="r-verdict">
+            <span class="stamp stamp-unconfirmed" aria-hidden="true">AWAITING</span>
+          </div>
+          <p class="r-foot">FIRST CALL PRINTS THE FIRST RECEIPT</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+{% if demo %}
+{# Say so. A board about not overstating things does not get to imply a
+   fixture is a live call. #}
+<div class="fixture-note">
+  <span class="fixture-chip">FIXTURE DATA</span>
+  <span>No line is connected. These are seeded records so the board can be read with nothing running.</span>
+  <form method="post" action="/demo/reset">
+    <button class="fixture-reset" type="submit">RE-SEED</button>
+  </form>
+</div>
+{% endif %}

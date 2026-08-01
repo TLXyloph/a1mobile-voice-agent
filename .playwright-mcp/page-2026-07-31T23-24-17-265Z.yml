@@ -1,0 +1,264 @@
+- generic [ref=f2e2]:
+  - banner [ref=f2e3]:
+    - generic [ref=f2e4]:
+      - heading "Golden Crumb Bakery — call ledger" [level=1] [ref=f2e5]
+      - generic [ref=f2e6]: Every call, order, claim and piece of evidence, queryable.
+    - generic [ref=f2e7]:
+      - text: 67 real call(s) · 10 sample ·
+      - link "JSON" [ref=f2e8] [cursor=pointer]:
+        - /url: /api/overview
+  - generic [ref=f2e9]: "10 of 77 calls on this page are synthesized sample data, badged SAMPLE in every table. Real calls only: $1,600.00 booked / $1,600.00 proven across 4 order(s). Sample rows exist so the layout is legible before the demo call - they are not evidence of anything."
+  - generic [ref=f2e10]:
+    - heading "Revenue booked vs revenue proven" [level=2] [ref=f2e11]
+    - generic [ref=f2e12]:
+      - generic [ref=f2e13]:
+        - generic [ref=f2e14]: Booked (agent believes)
+        - generic [ref=f2e15]: $5,404.34
+      - generic [ref=f2e16]:
+        - generic [ref=f2e17]: Proven (independent evidence)
+        - generic [ref=f2e18]: $3,217.00
+      - generic [ref=f2e19]:
+        - generic [ref=f2e20]: Unproven gap
+        - generic [ref=f2e21]: $2,187.34
+      - generic [ref=f2e22]:
+        - generic [ref=f2e23]: Contradicted
+        - generic [ref=f2e24]: $158.00
+    - generic [ref=f2e29]:
+      - generic [ref=f2e30]: proven 9 order(s) · 59.5% of booked
+      - generic [ref=f2e32]: unconfirmed 4 order(s)
+      - generic [ref=f2e34]: contradicted 1 order(s)
+    - generic [ref=f2e36]: Booked counts every order the agent filed. Proven counts only the ones an independent channel confirmed - inbound SMS, inbound email, a provider API. Nothing the agent said about its own call can move the green number.
+  - generic [ref=f2e37]:
+    - generic [ref=f2e38]:
+      - heading "Capacity — week of 2026-07-27" [level=2] [ref=f2e39]
+      - generic [ref=f2e40]:
+        - generic [ref=f2e41]: Weekly capacity
+        - generic [ref=f2e42]: 600 muffins
+      - generic [ref=f2e43]:
+        - generic [ref=f2e44]: Committed (proven orders)
+        - generic [ref=f2e45]: "240"
+      - generic [ref=f2e46]:
+        - generic [ref=f2e47]: Held (unconfirmed orders)
+        - generic [ref=f2e48]: "400"
+      - generic [ref=f2e49]:
+        - generic [ref=f2e50]: Left to sell
+        - generic [ref=f2e51]: "0"
+      - generic [ref=f2e52]:
+        - generic [ref=f2e53]: Utilisation
+        - generic [ref=f2e54]: 106.7%
+      - generic [ref=f2e55]: "Over-committed. Unconfirmed orders are counted against capacity, not ignored: an oven slot promised on a call is unavailable until the order is either confirmed or dropped. Showing current week."
+    - generic [ref=f2e56]:
+      - heading "Negotiation" [level=2] [ref=f2e57]
+      - generic [ref=f2e58]:
+        - generic [ref=f2e59]: Orders priced
+        - generic [ref=f2e60]: "14"
+      - generic [ref=f2e61]:
+        - generic [ref=f2e62]: Average discount off target
+        - generic [ref=f2e63]: 5.16%
+      - generic [ref=f2e64]:
+        - generic [ref=f2e65]: Deepest discount
+        - generic [ref=f2e66]: 20.0%
+      - generic [ref=f2e67]:
+        - generic [ref=f2e68]: Floor was binding
+        - generic [ref=f2e69]: 2 order(s) · 14.3%
+      - generic [ref=f2e70]: Discount is measured against the target price from the operator's own cost model in config/restaurant.json, not against a list price the agent chose.
+    - generic [ref=f2e71]:
+      - heading "Ledger" [level=2] [ref=f2e72]
+      - generic [ref=f2e73]:
+        - generic [ref=f2e74]: Calls
+        - generic [ref=f2e75]: "77"
+      - generic [ref=f2e76]:
+        - generic [ref=f2e77]: Orders
+        - generic [ref=f2e78]: "14"
+      - generic [ref=f2e79]:
+        - generic [ref=f2e80]: Claims
+        - generic [ref=f2e81]: "15"
+      - generic [ref=f2e82]:
+        - generic [ref=f2e83]: Evidence artifacts
+        - generic [ref=f2e84]: "25"
+      - button "Re-ingest receipts" [ref=f2e87] [cursor=pointer]
+      - generic [ref=f2e88]: SQLite at restaurant.db. Every row here is a projection of a receipt JSON in evidence/; verdicts are re-derived from evidence on the way in, never copied from the file.
+  - heading "Calls — 14 shown, 63 with no claims hidden" [level=2] [ref=f2e89]
+  - table [ref=f2e91]:
+    - rowgroup [ref=f2e92]:
+      - row [ref=f2e93]:
+        - columnheader "Started" [ref=f2e94]
+        - columnheader "Task" [ref=f2e95]
+        - columnheader "Called" [ref=f2e96]
+        - columnheader "Outcome" [ref=f2e97]
+        - columnheader "Verified" [ref=f2e98]
+        - columnheader "Booked" [ref=f2e99]
+        - columnheader "Proven" [ref=f2e100]
+      - row [ref=f2e101]:
+        - cell "2026-07-31 22:40" [ref=f2e102]
+        - cell [ref=f2e103]:
+          - link "Sell 200 pastries to a local event host" [ref=f2e104] [cursor=pointer]:
+            - /url: /call/receipt_81a2f091790f
+        - cell "+14155550142" [ref=f2e105]
+        - cell "SUCCESS" [ref=f2e106]
+        - cell "1/1" [ref=f2e108]
+        - cell "$400.00" [ref=f2e109]
+        - cell "$400.00" [ref=f2e110]
+      - row [ref=f2e111]:
+        - cell "2026-07-31 19:21" [ref=f2e112]
+        - cell [ref=f2e113]:
+          - link "Sell 200 pastries to a local event host" [ref=f2e114] [cursor=pointer]:
+            - /url: /call/receipt_cddecc427a95
+        - cell "+14155550142" [ref=f2e115]
+        - cell "SUCCESS" [ref=f2e116]
+        - cell "1/1" [ref=f2e118]
+        - cell "$400.00" [ref=f2e119]
+        - cell "$400.00" [ref=f2e120]
+      - row [ref=f2e121]:
+        - cell "2026-07-31 19:20" [ref=f2e122]
+        - cell [ref=f2e123]:
+          - link "Sell 200 pastries to a local event host" [ref=f2e124] [cursor=pointer]:
+            - /url: /call/receipt_f299b4a105a1
+        - cell "+14155550142" [ref=f2e125]
+        - cell "SUCCESS" [ref=f2e126]
+        - cell "1/1" [ref=f2e128]
+        - cell "$400.00" [ref=f2e129]
+        - cell "$400.00" [ref=f2e130]
+      - row [ref=f2e131]:
+        - cell "2026-07-31 19:19" [ref=f2e132]
+        - cell [ref=f2e133]:
+          - link "Sell 200 pastries to a local event host" [ref=f2e134] [cursor=pointer]:
+            - /url: /call/receipt_fe96bc63ba17
+        - cell "+14155550142" [ref=f2e135]
+        - cell "PARTIAL" [ref=f2e136]
+        - cell "1/2" [ref=f2e138]
+        - cell "$400.00" [ref=f2e139]
+        - cell "$400.00" [ref=f2e140]
+      - row [ref=f2e141]:
+        - cell "2026-07-31 17:23" [ref=f2e142]
+        - cell "Standing weekly breakfast order - Northside Clinic SAMPLE" [ref=f2e143]:
+          - link "Standing weekly breakfast order - Northside Clinic" [ref=f2e144] [cursor=pointer]:
+            - /url: /call/receipt_sample_northside-clinic
+          - generic [ref=f2e145]: SAMPLE
+        - cell "+14155550188" [ref=f2e146]
+        - cell "SUCCESS" [ref=f2e147]
+        - cell "1/1" [ref=f2e149]
+        - cell "$318.00" [ref=f2e150]
+        - cell "$318.00" [ref=f2e151]
+      - row [ref=f2e152]:
+        - cell "2026-07-31 11:23" [ref=f2e153]
+        - cell "One-off offsite catering - Harbor Logistics SAMPLE" [ref=f2e154]:
+          - link "One-off offsite catering - Harbor Logistics" [ref=f2e155] [cursor=pointer]:
+            - /url: /call/receipt_sample_harbor-offsite
+          - generic [ref=f2e156]: SAMPLE
+        - cell "+14155550143" [ref=f2e157]
+        - cell "SUCCESS" [ref=f2e158]
+        - cell "1/1" [ref=f2e160]
+        - cell "$612.00" [ref=f2e161]
+        - cell "$612.00" [ref=f2e162]
+      - row [ref=f2e163]:
+        - cell "2026-07-31 05:23" [ref=f2e164]
+        - cell "Fall term breakfast block - Pinecrest School SAMPLE" [ref=f2e165]:
+          - link "Fall term breakfast block - Pinecrest School" [ref=f2e166] [cursor=pointer]:
+            - /url: /call/receipt_sample_pinecrest-school
+          - generic [ref=f2e167]: SAMPLE
+        - cell "+14155550119" [ref=f2e168]
+        - cell "PARTIAL" [ref=f2e169]
+        - cell "0/1" [ref=f2e171]
+        - cell "$726.00" [ref=f2e172]
+        - cell "$0.00" [ref=f2e173]
+      - row [ref=f2e174]:
+        - cell "2026-07-30 23:23" [ref=f2e175]
+        - cell "Weekly members breakfast - Greenline Coworking SAMPLE" [ref=f2e176]:
+          - link "Weekly members breakfast - Greenline Coworking" [ref=f2e177] [cursor=pointer]:
+            - /url: /call/receipt_sample_greenline-coworking
+          - generic [ref=f2e178]: SAMPLE
+        - cell "+14155550164" [ref=f2e179]
+        - cell "PARTIAL" [ref=f2e180]
+        - cell "0/1" [ref=f2e182]
+        - cell "$202.00" [ref=f2e183]
+        - cell "$0.00" [ref=f2e184]
+      - row [ref=f2e185]:
+        - cell "2026-07-30 17:23" [ref=f2e186]
+        - cell "Client breakfast - Vantage Partners SAMPLE" [ref=f2e187]:
+          - link "Client breakfast - Vantage Partners" [ref=f2e188] [cursor=pointer]:
+            - /url: /call/receipt_sample_vantage-partners
+          - generic [ref=f2e189]: SAMPLE
+        - cell "+14155550177" [ref=f2e190]
+        - cell "FAILED" [ref=f2e191]
+        - cell "0/1" [ref=f2e193]
+        - cell "$0.00" [ref=f2e194]
+        - cell "$0.00" [ref=f2e195]
+      - row [ref=f2e196]:
+        - cell "2026-07-30 11:23" [ref=f2e197]
+        - cell "Monthly staff breakfast - Atlas Dental SAMPLE" [ref=f2e198]:
+          - link "Monthly staff breakfast - Atlas Dental" [ref=f2e199] [cursor=pointer]:
+            - /url: /call/receipt_sample_atlas-dental
+          - generic [ref=f2e200]: SAMPLE
+        - cell "+14155550152" [ref=f2e201]
+        - cell "SUCCESS" [ref=f2e202]
+        - cell "1/1" [ref=f2e204]
+        - cell "$87.00" [ref=f2e205]
+        - cell "$87.00" [ref=f2e206]
+      - row [ref=f2e207]:
+        - cell "2026-07-30 05:23" [ref=f2e208]
+        - cell "Saturday members morning - Riverside Gym SAMPLE" [ref=f2e209]:
+          - link "Saturday members morning - Riverside Gym" [ref=f2e210] [cursor=pointer]:
+            - /url: /call/receipt_sample_riverside-gym
+          - generic [ref=f2e211]: SAMPLE
+        - cell "+14155550131" [ref=f2e212]
+        - cell "SUCCESS" [ref=f2e213]
+        - cell "1/1" [ref=f2e215]
+        - cell "$372.00" [ref=f2e216]
+        - cell "$372.00" [ref=f2e217]
+      - row [ref=f2e218]:
+        - cell "2026-07-29 23:23" [ref=f2e219]
+        - cell "New office opening - Summit Clinic SAMPLE" [ref=f2e220]:
+          - link "New office opening - Summit Clinic" [ref=f2e221] [cursor=pointer]:
+            - /url: /call/receipt_sample_summit-clinic
+          - generic [ref=f2e222]: SAMPLE
+        - cell "+14155550196" [ref=f2e223]
+        - cell "PARTIAL" [ref=f2e224]
+        - cell "0/1" [ref=f2e226]
+        - cell "$486.00" [ref=f2e227]
+        - cell "$0.00" [ref=f2e228]
+      - row [ref=f2e229]:
+        - cell "2026-07-29 17:23" [ref=f2e230]
+        - cell "Quarterly all-hands - Lakeside Agency SAMPLE" [ref=f2e231]:
+          - link "Quarterly all-hands - Lakeside Agency" [ref=f2e232] [cursor=pointer]:
+            - /url: /call/receipt_sample_lakeside-agency
+          - generic [ref=f2e233]: SAMPLE
+        - cell "+14155550107" [ref=f2e234]
+        - cell "SUCCESS" [ref=f2e235]
+        - cell "1/1" [ref=f2e237]
+        - cell "$228.00" [ref=f2e238]
+        - cell "$228.00" [ref=f2e239]
+      - row [ref=f2e240]:
+        - cell "2026-07-29 11:23" [ref=f2e241]
+        - cell "Weekend market stall resupply - Borough Market SAMPLE" [ref=f2e242]:
+          - link "Weekend market stall resupply - Borough Market" [ref=f2e243] [cursor=pointer]:
+            - /url: /call/receipt_sample_borough-market
+          - generic [ref=f2e244]: SAMPLE
+        - cell "+14155550122" [ref=f2e245]
+        - cell "PARTIAL" [ref=f2e246]
+        - cell "0/1" [ref=f2e248]
+        - cell "$773.34" [ref=f2e249]
+        - cell "$0.00" [ref=f2e250]
+  - link "Show 63 call(s) with no claims" [ref=f2e252] [cursor=pointer]:
+    - /url: /?all=1
+  - heading "Export" [level=2] [ref=f2e253]
+  - generic [ref=f2e254]:
+    - 'link "CSV: Calls" [ref=f2e255] [cursor=pointer]':
+      - /url: /export/calls.csv
+    - button "→ Sheets" [ref=f2e256] [cursor=pointer]
+    - 'link "CSV: Orders by verdict" [ref=f2e257] [cursor=pointer]':
+      - /url: /export/orders.csv
+    - button "→ Sheets" [ref=f2e258] [cursor=pointer]
+    - 'link "CSV: Evidence chain" [ref=f2e259] [cursor=pointer]':
+      - /url: /export/evidence.csv
+    - button "→ Sheets" [ref=f2e260] [cursor=pointer]
+    - 'link "CSV: Capacity log" [ref=f2e261] [cursor=pointer]':
+      - /url: /export/capacity.csv
+    - button "→ Sheets" [ref=f2e262] [cursor=pointer]
+    - 'link "CSV: Discounts per order" [ref=f2e263] [cursor=pointer]':
+      - /url: /export/discounts.csv
+    - button "→ Sheets" [ref=f2e264] [cursor=pointer]
+    - 'link "CSV: Booked vs proven" [ref=f2e265] [cursor=pointer]':
+      - /url: /export/revenue.csv
+    - button "→ Sheets" [ref=f2e266] [cursor=pointer]
+  - contentinfo [ref=f2e268]: Verdicts come from src/verify/receipts.py and are recomputed from the evidence rows at write time. claims.verdict is immutable in the database - a trigger aborts any UPDATE - so nothing on this page, and no SQL against this file, can promote a claim without new evidence.

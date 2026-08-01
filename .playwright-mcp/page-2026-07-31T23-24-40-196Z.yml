@@ -1,0 +1,92 @@
+- generic [active] [ref=f4e1]:
+  - banner [ref=f4e2]:
+    - generic [ref=f4e3]:
+      - generic [ref=f4e4]:
+        - heading "Ledgerline — outbound pipeline" [level=1] [ref=f4e5]
+        - generic [ref=f4e6]: a deal is closed when evidence says so, not when the agent does
+      - navigation [ref=f4e7]:
+        - link "Pipeline" [ref=f4e8] [cursor=pointer]:
+          - /url: /
+        - link "Deal economics" [ref=f4e9] [cursor=pointer]:
+          - /url: /economics
+  - generic [ref=f4e11]:
+    - generic [ref=f4e12]:
+      - generic [ref=f4e13]:
+        - heading "Proposed terms" [level=3] [ref=f4e14]
+        - generic [ref=f4e15]:
+          - generic [ref=f4e16]:
+            - generic [ref=f4e17]: Price / seat / mo
+            - textbox "Price / seat / mo" [ref=f4e18]: "40"
+          - generic [ref=f4e19]:
+            - generic [ref=f4e20]: Seats
+            - textbox "Seats" [ref=f4e21]: "25"
+          - generic [ref=f4e22]:
+            - generic [ref=f4e23]: Term (months)
+            - textbox "Term (months)" [ref=f4e24]: "12"
+          - generic [ref=f4e25]:
+            - generic [ref=f4e26]: Discount %
+            - textbox "Discount %" [ref=f4e27]: "10.0"
+          - generic [ref=f4e28]:
+            - generic [ref=f4e29]: Free months
+            - textbox "Free months" [ref=f4e30]: "2"
+          - generic [ref=f4e31]:
+            - generic [ref=f4e32]: Onboarding fee
+            - textbox "Onboarding fee" [ref=f4e33]: "0.0"
+          - generic [ref=f4e34]:
+            - generic [ref=f4e35]: Cost to serve / seat / mo
+            - textbox "Cost to serve / seat / mo" [ref=f4e36]: "6"
+          - generic [ref=f4e37]:
+            - generic [ref=f4e38]: CAC
+            - textbox "CAC" [ref=f4e39]: "9000"
+          - button "Recalculate" [ref=f4e41] [cursor=pointer]
+      - generic [ref=f4e42]:
+        - heading "Concessions against list" [level=3] [ref=f4e43]
+        - table [ref=f4e44]:
+          - rowgroup [ref=f4e45]:
+            - row [ref=f4e46]:
+              - columnheader "Concession" [ref=f4e47]
+              - columnheader "Own cap" [ref=f4e48]
+          - rowgroup [ref=f4e49]:
+            - row [ref=f4e50]:
+              - cell "10.0% off list" [ref=f4e51]
+              - cell "within cap" [ref=f4e52]
+            - row [ref=f4e54]:
+              - cell "2 free month(s)" [ref=f4e55]
+              - cell "within cap" [ref=f4e56]
+            - row [ref=f4e58]:
+              - cell "2500.0 off onboarding" [ref=f4e59]
+              - cell "within cap" [ref=f4e60]
+        - paragraph [ref=f4e62]:
+          - text: "Combined verdict:"
+          - generic [ref=f4e63]: rejected
+        - paragraph [ref=f4e64]:
+          - strong [ref=f4e65]: Stacking trap.
+          - text: Every concession above is inside its own cap and the combined deal is still rejected. This is the case a per-lever check cannot see, and the reason only the combined evaluation may clear a deal.
+    - generic [ref=f4e67]:
+      - heading "Deal economics" [level=3] [ref=f4e68]
+      - generic [ref=f4e69]:
+        - generic [ref=f4e70]: Rejected
+        - text: USD 9000.00 over 12 months (25 seats), margin 80.00%, payback 14.40 months
+        - list [ref=f4e71]:
+          - listitem [ref=f4e72]: contract value USD 9000.00 is below the USD 11500 minimum (short by USD 2500.00)
+          - listitem [ref=f4e73]: CAC payback of 14.40 months exceeds the 12-month limit
+      - generic [ref=f4e74]:
+        - term [ref=f4e75]: Total contract value
+        - definition [ref=f4e76]: USD 9000.00
+        - term [ref=f4e77]: Effective monthly rate
+        - definition [ref=f4e78]: USD 750.00
+        - term [ref=f4e79]: Effective rate / seat / month
+        - definition [ref=f4e80]: USD 30.00
+        - term [ref=f4e81]: Effective discount (all rate levers)
+        - definition [ref=f4e82]: 25.00%
+        - term [ref=f4e83]: Cost to serve, full term
+        - definition [ref=f4e84]: USD 1800.00
+        - term [ref=f4e85]: Gross profit over term
+        - definition [ref=f4e86]: USD 7200.00
+        - term [ref=f4e87]: Gross margin
+        - definition [ref=f4e88]: 80.00%
+        - term [ref=f4e89]: CAC payback
+        - definition [ref=f4e90]: 14.40 months
+        - term [ref=f4e91]: Billable months
+        - definition [ref=f4e92]: 10 of 12
+      - paragraph [ref=f4e93]: "Floor: at least USD 11500 of contract value, CAC repaid inside 12 months, gross margin at or above 70%. Either money floor failing rejects the deal on its own - margin is a backstop, not the binding constraint."

@@ -1,0 +1,18 @@
+{
+  "_comment": "Approvals over MCP so the owner can be asked through VoiceOS. Same queue as the /operator web console - an escalation can be answered from either.",
+  "voiceos_command": "/Users/samvrithbandi/Desktop/hackathons/specialized/a1mobile/.venv/bin/python /Users/samvrithbandi/Desktop/hackathons/specialized/a1mobile/src/mcp/approvals_server.py",
+  "mcpServers": {
+    "a1mobile-approvals": {
+      "command": "/Users/samvrithbandi/Desktop/hackathons/specialized/a1mobile/.venv/bin/python",
+      "args": ["/Users/samvrithbandi/Desktop/hackathons/specialized/a1mobile/src/mcp/approvals_server.py"],
+      "transport": "stdio",
+      "env": {"OPERATOR_URL": "http://localhost:8080"}
+    }
+  },
+  "_tools": {
+    "pending_approvals": "what is waiting - works on every MCP client",
+    "answer_approval": "deliver the owner's words verbatim",
+    "watch_approvals": "hold open and prompt via elicitation; degrades to conversational if the client lacks the capability"
+  },
+  "_caveat": "An MCP server can only speak inside a tool call. VoiceOS must either hold watch_approvals open or be asked. On a live call the caller is on hold, so the /operator web page remains the reliable path."
+}

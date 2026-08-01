@@ -1,0 +1,85 @@
+- generic [ref=f3e2]:
+  - banner [ref=f3e3]:
+    - generic [ref=f3e4]:
+      - heading "Client breakfast - Vantage Partners SAMPLE" [level=1] [ref=f3e5]:
+        - text: Client breakfast - Vantage Partners
+        - generic [ref=f3e6]: SAMPLE
+      - generic [ref=f3e7]:
+        - link "← All calls" [ref=f3e8] [cursor=pointer]:
+          - /url: /
+        - text: · receipt_sample_vantage-partners ·
+        - link "JSON" [ref=f3e9] [cursor=pointer]:
+          - /url: /api/call/receipt_sample_vantage-partners
+    - generic [ref=f3e10]: FAILED
+  - generic [ref=f3e12]:
+    - generic [ref=f3e13]:
+      - heading "Call" [level=2] [ref=f3e14]
+      - generic [ref=f3e15]:
+        - generic [ref=f3e16]: Called
+        - generic [ref=f3e17]: "+14155550177"
+      - generic [ref=f3e18]:
+        - generic [ref=f3e19]: Room
+        - generic [ref=f3e20]: sample-vantage-partners
+      - generic [ref=f3e21]:
+        - generic [ref=f3e22]: Started
+        - generic [ref=f3e23]: 2026-07-30 17:23
+      - generic [ref=f3e24]:
+        - generic [ref=f3e25]: Duration
+        - generic [ref=f3e26]: 420.0s
+      - generic [ref=f3e27]:
+        - generic [ref=f3e28]: Recording
+        - generic [ref=f3e29]: none
+      - generic [ref=f3e30]:
+        - generic [ref=f3e31]: Transcript
+        - generic [ref=f3e32]: none
+    - generic [ref=f3e33]:
+      - heading "This call" [level=2] [ref=f3e34]
+      - generic [ref=f3e35]:
+        - generic [ref=f3e36]: Booked
+        - generic [ref=f3e37]: $0.00
+      - generic [ref=f3e38]:
+        - generic [ref=f3e39]: Proven
+        - generic [ref=f3e40]: $0.00
+      - generic [ref=f3e41]:
+        - generic [ref=f3e42]: Unproven gap
+        - generic [ref=f3e43]: $0.00
+      - generic [ref=f3e44]: FAILED - 1 claim(s) contradicted by independent evidence.
+  - heading "Orders" [level=2] [ref=f3e45]
+  - table [ref=f3e47]:
+    - rowgroup [ref=f3e48]:
+      - row [ref=f3e49]:
+        - columnheader "Order" [ref=f3e50]
+        - columnheader "Qty" [ref=f3e51]
+        - columnheader "Unit" [ref=f3e52]
+        - columnheader "Total" [ref=f3e53]
+        - columnheader "Discount" [ref=f3e54]
+        - columnheader "Delivery" [ref=f3e55]
+        - columnheader "Status" [ref=f3e56]
+      - row [ref=f3e57]:
+        - cell "claim_sample_vantage-partners_order" [ref=f3e58]
+        - cell "60" [ref=f3e59]
+        - cell "muffins" [ref=f3e60]
+        - cell "$158.00" [ref=f3e61]
+        - cell "-8.97%" [ref=f3e62]
+        - cell "Friday 8am" [ref=f3e63]
+        - cell "CONTRADICTED" [ref=f3e64]
+  - heading "Claims and evidence chain" [level=2] [ref=f3e66]
+  - generic [ref=f3e67]:
+    - heading "CONTRADICTED 60 muffins for 158.00, delivered Friday 8am" [level=3] [ref=f3e68]:
+      - generic [ref=f3e69]: CONTRADICTED
+      - text: 60 muffins for 158.00, delivered Friday 8am
+    - generic [ref=f3e70]: "Expected side effect: written confirmation arrives at +14155550177 stating quantity 60 and total 158.00"
+    - generic [ref=f3e71]: 1 independent artifact(s) of 2 total.
+    - list [ref=f3e72]:
+      - listitem [ref=f3e73]:
+        - text: agent_assertion
+        - generic [ref=f3e74]: AGENT-ONLY
+        - generic [ref=f3e75]: SUPPORTS
+        - text: Caller agreed to 60 at 158.00 for Friday 8am
+        - generic [ref=f3e76]: 2026-07-30T17:29:58.507574+00:00
+      - listitem [ref=f3e77]:
+        - text: inbound_sms
+        - generic [ref=f3e78]: INDEPENDENT
+        - generic [ref=f3e79]: CONTRADICTS
+        - text: "SMS +14155550177: 'Sorry - we have to cancel the 60 for Friday 8am.'"
+        - generic [ref=f3e80]: 2026-07-30T18:04:58.507574+00:00 · sha256:eeebb88e4b672872
